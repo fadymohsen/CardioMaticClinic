@@ -1,4 +1,4 @@
-## Code Style Guidelines for [CarioMaticClinic]
+## Code Style Guidelines for [CarioMatic Clinic]
 
 ### Technologies
 - **Backend:** Node.js with TypeScript

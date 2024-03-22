@@ -32,7 +32,7 @@
 - Write unit tests for critical functions and aim for a high code coverage percentage.
 
 ### Team Members
-- *Project Manager:* Fady Mohsen
-- *Backend Developers:* Mohamad Sayed Diab & Reem Adel.
-- *Frontend Developers:* Mohamad Elsayed Mosilhe & Rana Ibrahim.
-- *Security & Testing:* Fady Mohsen & Sondos Mohamad.
+- **Project Manager:** Fady Mohsen
+- **Backend Developers:** Mohamad Sayed Diab & Reem Adel.
+- **Frontend Developers:** Mohamad Elsayed Mosilhe & Rana Ibrahim.
+- **Security & Testing:** Fady Mohsen & Sondos Mohamad.

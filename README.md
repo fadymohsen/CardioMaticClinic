@@ -1,4 +1,4 @@
-## CarioMatic Clinic
+## CardioMatic Clinic
 
 ### Technologies
 - **Backend:** Node.js with TypeScript

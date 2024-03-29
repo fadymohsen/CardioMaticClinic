@@ -20,8 +20,8 @@
 
 ### Team Structure
 - **Project Manager:** Fady Mohsen
-- **Backend Developers:** Mohamad Sayed Diab & Reem Adel.
-- **Frontend Developers:** Mohamad Sayed Mosilhe & Rana Ibrahim.
+- **Backend Developers:** Mohamad Sayed Diab & Mohamad Sayed Mosilhe.
+- **Frontend Developers:** Reem Adel & Rana Ibrahim.
 - **Security & Testing:** Fady Mohsen & Sondos Mohamad.
 
 ### Team Members Contacts

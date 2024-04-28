@@ -1,19 +1,25 @@
 export default function SignUp() {
-    return (
-      <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign up for an account
-            </h2>
-          </div>
-  
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+  return (
+    <>
+      <main>
+        <div className="w-full mt-8 max-w-sm  mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+          <div className="px-6 py-4">
+            <div className="flex justify-center mx-auto">
+              <img
+                className="w-auto h-7 sm:h-12 mb-3"
+                src="src\assets\pulse-eft-network-seeklogo.svg"
+                alt=""
+              />
+            </div>
+
             <form className="space-y-6" action="#" method="POST">
+              <h2 className=" mt-3 text-2xl font-medium text-center text-gray-600 dark:text-gray-200">
+                Sign up to your account
+              </h2>
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
                   Name
                 </label>
@@ -24,15 +30,15 @@ export default function SignUp() {
                     type="text"
                     autoComplete="name"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                   />
                 </div>
               </div>
-  
+
               <div>
                 <label
                   htmlFor="age"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block dark:text-white text-sm font-medium leading-6 text-gray-900"
                 >
                   Age
                 </label>
@@ -43,15 +49,15 @@ export default function SignUp() {
                     type="number"
                     autoComplete="age"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                   />
                 </div>
               </div>
-  
+
               <div>
                 <label
                   htmlFor="gender"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block dark:text-white text-sm font-medium leading-6 text-gray-900"
                 >
                   Gender
                 </label>
@@ -61,7 +67,7 @@ export default function SignUp() {
                     name="gender"
                     autoComplete="gender"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                   >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -69,11 +75,11 @@ export default function SignUp() {
                   </select>
                 </div>
               </div>
-  
+
               <div>
                 <label
                   htmlFor="contactInfo"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block dark:text-white text-sm font-medium leading-6 text-gray-900"
                 >
                   Contact Info
                 </label>
@@ -84,15 +90,15 @@ export default function SignUp() {
                     type="text"
                     autoComplete="contact-info"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                   />
                 </div>
               </div>
-  
+
               <div>
                 <label
                   htmlFor="medicalHistory"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block dark:text-white text-sm font-medium leading-6 text-gray-900 "
                 >
                   Medical History
                 </label>
@@ -102,23 +108,22 @@ export default function SignUp() {
                     name="medicalHistory"
                     autoComplete="medical-history"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                   ></textarea>
                 </div>
               </div>
-  
-              <div>
-                <button
+
+              <div className="flex items-center justify-between mt-4">
+                <input
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign up
-                </button>
+                  className="mx-auto text-center px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  value="Sign Up"
+                />
               </div>
             </form>
           </div>
         </div>
-      </>
-    );
-  }
-  
+      </main>
+    </>
+  );
+}

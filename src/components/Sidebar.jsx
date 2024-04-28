@@ -100,60 +100,47 @@ export default function Sidebar({ currentLinkId }) {
       <a href="#" className="block mx-auto my-3">
         <img
           className="w-auto h-8 sm:h-9"
-          src="https://merakiui.com/images/logo.svg"
+          src="src\assets\pulse-eft-network-seeklogo.svg"
           alt=""
         />
       </a>
 
-      <div className="flex flex-col justify-between flex-1 mt-14">
-        <nav>
-          {navigationLinks.map((link) => {
-            const style =
-              currentLinkId === link.id
-                ? "flex items-center px-4 py-2 mb-5 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200"
-                : "flex items-center px-4 py-2 mb-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700";
+      <nav className="flex flex-col justify-between flex-1 mt-14">
+        {navigationLinks.map((link) => {
+          const style =
+            currentLinkId === link.id
+              ? "flex items-center px-4 py-2 mb-5 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200"
+              : "flex items-center px-4 py-2 mb-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700";
 
-            return (
-              <Link key={link.id} className={style} href={link.href}>
-                {link.icon}
-                <span className="mx-4 font-medium">{link.name}</span>
-              </Link>
-            );
-          })}
+          return (
+            <Link key={link.id} className={style} href={link.href}>
+              {link.icon}
+              <span className="mx-4 font-medium">{link.name}</span>
+            </Link>
+          );
+        })}
 
-          <hr className="my-6 border-gray-200 dark:border-gray-600" />
+        <hr className="my-6 border-gray-200 dark:border-gray-600" />
 
-          <Link
-            className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
-            href="/"
+        <Link
+          className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+          href="/"
+        >
+          <svg
+            className="w-5 h-5 mx-1"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              className="w-5 h-5 mx-1"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z"
-                fill="currentColor"
-              ></path>
-            </svg>
+            <path
+              d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z"
+              fill="currentColor"
+            ></path>
+          </svg>
 
-            <span className="mx-4 font-medium">Logout</span>
-          </Link>
-        </nav>
-
-        {/* <a href="#" className="flex items-center px-4 -mx-2">
-          <div className="flex flex-col">
-            <span className="mx-2 font-medium text-gray-800 dark:text-gray-200">
-              Dr. {currDoctor["name"]}
-            </span>
-            <span className="mx-2 text-xs text-gray-500 dark:text-gray-200">
-              {currDoctor["specialization"]}
-            </span>
-          </div>
-        </a> */}
-      </div>
+          <span className="mx-4 font-medium">Logout</span>
+        </Link>
+      </nav>
     </aside>
   );
 }

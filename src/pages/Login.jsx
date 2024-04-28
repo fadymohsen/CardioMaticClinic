@@ -2,8 +2,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { NavLink } from "react-router-dom";
 
-import Appointment from "./Appointment";
-
 export default function Login() {
   return (
     <>
@@ -44,13 +42,18 @@ export default function Login() {
                   aria-label="Password"
                 />
               </div>
-
-              <div className="flex items-center justify-between mt-4">
-                <input
-                  type="submit"
-                  className="mx-auto text-center px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                  value="Sign In"
-                />
+              <div>
+                <NavLink
+                  to={"/dashboard"}
+                  className="flex items-center justify-between mt-4"
+                >
+                  <button
+                    type="submit"
+                    className="mx-auto text-center px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  >
+                    Sign In
+                  </button>
+                </NavLink>
               </div>
             </form>
           </div>

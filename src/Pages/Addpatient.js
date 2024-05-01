@@ -17,8 +17,8 @@ export default function AddPatient() {
   const [tests, setTests] = useState("");
   const [treatment, setTreatment] = useState("");
   const [medicalHistory, setMedicalHistory] = useState("");
-  // const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleBookAppointmentClick = () => {

@@ -1,28 +1,39 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // Ensure useNavigate is imported and initialized
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Fetching data from a JSON file (assuming the JSON structure has 'email' and 'password' fields)
-      const response = await fetch("/src/Assets/data.json"); // Adjust the path as needed
-      const data = await response.json();
+      console.log("Submitting form...");
 
-      // Verifying email and password
+      const response = await fetch(
+        "https://raw.githubusercontent.com/fadymohsen/CardioMaticClinic/main/src/Assets/data.json?token=GHSAT0AAAAAACP4PWOSPIKB3JRKCFRGEQTGZRSX76A"
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Data:", data);
+
       const user = data.find(
         (user) => user.email === email && user.password === password
       );
 
       if (user) {
-        // Success: Do something (e.g., redirect)
         console.log("Login successful!");
+        // Redirect to /home
+        navigate("/home"); // Use navigate directly without .push
       } else {
         setError("Invalid email or password");
       }

@@ -10,56 +10,31 @@ function Footer() {
         <div className="ft-info">
           <div className="ft-info-p1">
             <p className="ft-title">
-              Health <span className="ft-sign">+</span>
+              Pulse <span className="ft-sign">+</span>
             </p>
-            <p className="ft-description">
-              Talk to online doctors and get medical advice, online
-              prescriptions, refills and medical notes within minutes. On-demand
-              healthcare services at your fingertips.
-            </p>
+   
           </div>
 
           <SubscribeNewsletter />
         </div>
 
         <div className="ft-list">
-          <p className="ft-list-title">Services</p>
+          <p className="ft-list-title">Quick Links</p>
           <ul className="ft-list-items">
             <li>
-              <a href="#services">Emergency Care</a>
+              <a href="#hero">Home</a>
             </li>
             <li>
-              <a href="#services">Heart Disease</a>
+              <a href="#about">About</a>
             </li>
             <li>
-              <a href="#services">Dental Care</a>
+              <a href="#reviews">Reviews</a>
             </li>
             <li>
-              <a href="#services">Prescription</a>
+              <a href="#doctors">Doctors</a>
             </li>
             <li>
-              <a href="#services">Insights for doctors</a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="ft-list">
-          <p className="ft-list-title">Legal</p>
-          <ul className="ft-list-items">
-            <li>
-              <Link to={"/legal"}>General Info</Link>
-            </li>
-            <li>
-              <Link to={"/legal"}>Privacy Policy</Link>
-            </li>
-            <li>
-              <Link to={"/legal"}>Terms of Services</Link>
-            </li>
-            <li>
-              <Link to={"/legal"}>Consultations</Link>
-            </li>
-            <li>
-              <Link to={"/legal"}>How it Works</Link>
+              <a href="#Contact">Contact</a>
             </li>
           </ul>
         </div>
@@ -68,18 +43,14 @@ function Footer() {
           <p className="ft-list-title">Talk To Us</p>
           <ul className="ft-list-items">
             <li>
-              <a href="mailto:support@healthplus.com">support@healthplus.com</a>
+              <a href="mailto:support@healthplus.com">Cairo Uni, Faculty of Engineering</a>
+            </li>
+          
+            <li>
+              <a href="tel:+022 5454 5252">+20 1211235578</a>
             </li>
             <li>
-              <a href="mailto:appointment@healthplus.com">
-                appointment@healthplus.com
-              </a>
-            </li>
-            <li>
-              <a href="tel:+022 5454 5252">+022 5454 5252</a>
-            </li>
-            <li>
-              <a href="tel:+022 2326 6232">+022 2326 6232</a>
+              <a href="tel:+022 2326 6232">cardiomatic.info@gmail.com</a>
             </li>
           </ul>
         </div>

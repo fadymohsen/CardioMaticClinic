@@ -44,7 +44,7 @@ export default function Login() {
               </div>
               <div>
                 <NavLink
-                  to={"/dashboard"}
+                  to={"dashboard"}
                   className="flex items-center justify-between mt-4"
                 >
                   <button
@@ -64,7 +64,7 @@ export default function Login() {
             </span>
             <NavLink
               className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline"
-              to="/signup"
+              to="signup"
             >
               Request one.
             </NavLink>

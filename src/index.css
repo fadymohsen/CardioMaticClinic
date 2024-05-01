@@ -1,12 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-nav {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  color: brown;
-  font-size: large;
-}

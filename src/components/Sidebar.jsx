@@ -39,7 +39,7 @@ const navigationLinks = [
         </g>
       </svg>
     ),
-    href: "/Addpatient",
+    href: "addPatient",
   },
   {
     id: 1,
@@ -60,7 +60,7 @@ const navigationLinks = [
         />
       </svg>
     ),
-    href: "/Appointment",
+    href: "appointment",
   },
   {
     id: 2,
@@ -88,7 +88,7 @@ const navigationLinks = [
         />
       </svg>
     ),
-    href: "/Contact",
+    href: "contact",
   },
 ];
 
@@ -96,7 +96,7 @@ export default function Sidebar({ currentLinkId }) {
   // const currDoctor = JSON.parse(localStorage.getItem("current_doctor"));
 
   return (
-    <aside className="flex fixed flex-col w-60 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+    <aside className="flex fixed flex-col justify-between w-60 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
       <a href="#" className="block mx-auto my-3">
         <img
           className="w-auto h-8 sm:h-9"
@@ -105,7 +105,7 @@ export default function Sidebar({ currentLinkId }) {
         />
       </a>
 
-      <nav className="flex flex-col justify-between flex-1 mt-14">
+      <nav className="flex flex-col flex-1 mt-14">
         {navigationLinks.map((link) => {
           const style =
             currentLinkId === link.id
@@ -113,7 +113,7 @@ export default function Sidebar({ currentLinkId }) {
               : "flex items-center px-4 py-2 mb-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700";
 
           return (
-            <Link key={link.id} className={style} href={link.href}>
+            <Link key={link.id} className={style} to={link.href}>
               {link.icon}
               <span className="mx-4 font-medium">{link.name}</span>
             </Link>

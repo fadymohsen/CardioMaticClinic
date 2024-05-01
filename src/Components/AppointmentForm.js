@@ -73,13 +73,13 @@ function AppointmentForm() {
     <div className="appointment-form-section">
       <h1 className="legal-siteTitle">
         <Link to="/">
-          Health <span className="legal-siteSign">+</span>
+          Pulse <span className="legal-siteSign">+</span>
         </Link>
       </h1>
 
       <div className="form-container">
         <h2 className="form-title">
-          <span>Book Appointment Online</span>
+          <span>Book Appointment</span>
         </h2>
 
         <form className="form-content" onSubmit={handleSubmit}>
@@ -91,7 +91,9 @@ function AppointmentForm() {
               onChange={(e) => setPatientName(e.target.value)}
               required
             />
-            {formErrors.patientName && <p className="error-message">{formErrors.patientName}</p>}
+            {formErrors.patientName && (
+              <p className="error-message">{formErrors.patientName}</p>
+            )}
           </label>
 
           <br />
@@ -103,7 +105,9 @@ function AppointmentForm() {
               onChange={(e) => setPatientNumber(e.target.value)}
               required
             />
-            {formErrors.patientNumber && <p className="error-message">{formErrors.patientNumber}</p>}
+            {formErrors.patientNumber && (
+              <p className="error-message">{formErrors.patientNumber}</p>
+            )}
           </label>
 
           <br />
@@ -119,7 +123,9 @@ function AppointmentForm() {
               <option value="female">Female</option>
               <option value="private">I will inform Doctor only</option>
             </select>
-            {formErrors.patientGender && <p className="error-message">{formErrors.patientGender}</p>}
+            {formErrors.patientGender && (
+              <p className="error-message">{formErrors.patientGender}</p>
+            )}
           </label>
 
           <br />
@@ -131,22 +137,9 @@ function AppointmentForm() {
               onChange={(e) => setAppointmentTime(e.target.value)}
               required
             />
-            {formErrors.appointmentTime && <p className="error-message">{formErrors.appointmentTime}</p>}
-          </label>
-
-          <br />
-          <label>
-            Preferred Mode:
-            <select
-              value={preferredMode}
-              onChange={(e) => setPreferredMode(e.target.value)}
-              required
-            >
-              <option value="default">Select</option>
-              <option value="voice">Voice Call</option>
-              <option value="video">Video Call</option>
-            </select>
-            {formErrors.preferredMode && <p className="error-message">{formErrors.preferredMode}</p>}
+            {formErrors.appointmentTime && (
+              <p className="error-message">{formErrors.appointmentTime}</p>
+            )}
           </label>
 
           <br />
@@ -154,12 +147,14 @@ function AppointmentForm() {
             Confirm Appointment
           </button>
 
-          <p className="success-message" style={{display: isSubmitted ? "block" : "none"}}>Appointment details has been sent to the patients phone number via SMS.</p>
+          <p
+            className="success-message"
+            style={{ display: isSubmitted ? "block" : "none" }}
+          >
+            Appointment details has been sent to the patients phone number via
+            SMS.
+          </p>
         </form>
-      </div>
-
-      <div className="legal-footer">
-        <p>© 2013-2023 Health+. All rights reserved.</p>
       </div>
 
       <ToastContainer autoClose={5000} limit={1} closeButton={false} />

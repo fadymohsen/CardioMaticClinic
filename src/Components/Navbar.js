@@ -30,9 +30,7 @@ function Navbar() {
   return (
     <div className="navbar-section">
       <h1 className="navbar-title">
-        <Link to="/">
-          Health <span className="navbar-sign">+</span>
-        </Link>
+        <Link to="/">Pulse</Link>
       </h1>
 
       {/* Desktop */}

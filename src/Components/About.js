@@ -15,11 +15,37 @@ function About() {
           <span>About Us</span>
         </h3>
         <p className="about-description">
-          Welcome to Health Plus, your trusted partner for accessible and
-          personalized healthcare. Our expert doctors offer online consultations
-          and specialized services, prioritizing your well-being. Join us on
-          this journey towards a healthier you.
+          At CardioMatic Clinic, we understand that entrusting your
+          cardiovascular health to a medical institution requires confidence
+          and assurance.
         </p>
+
+        <h4 className="about-text-title">Why You Should Trust Us?</h4>
+
+        <div className="about-list">
+          <p className="about-list-item">
+            <span className="about-list-icon">&#10004;</span> Expertise: With a
+            team of experienced cardiologists at the forefront of cardiac care
+            and cutting-edge technology ensuring accurate diagnoses and
+            interventions, we stand as your trusted partner in heart health.
+          </p>
+          <p className="about-list-item">
+            <span className="about-list-icon">&#10004;</span> Compassionate
+            Care: We provide compassionate support throughout your journey,
+            ensuring you feel understood and cared for every step of the way.
+          </p>
+          <p className="about-list-item">
+            <span className="about-list-icon">&#10004;</span> Comprehensive
+            Approach: Our commitment to a comprehensive approach means we
+            consider every aspect of your health and well-being, tailoring
+            treatment plans to suit your individual needs.
+          </p>
+          <p className="about-list-item">
+            <span className="about-list-icon">&#10004;</span> Commitment to
+            Excellence: We strive for excellence in every aspect of our
+            services, ensuring you receive the highest quality care possible.
+          </p>
+        </div>
 
         <h4 className="about-text-title">Your Solutions</h4>
 

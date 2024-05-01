@@ -26,24 +26,14 @@ function Navbar() {
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <a href="#home" className="navbar-links">
+          <Link to="/home" className="navbar-links">
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#about" className="navbar-links">
-            About
-          </a>
-        </li>
-        <li>
-          <a href="#reviews" className="navbar-links">
-            Reviews
-          </a>
-        </li>
-        <li>
-          <a href="#doctors" className="navbar-links">
-            Doctors
-          </a>
+          <Link to="/patient-record" className="navbar-links">
+            Patient Record
+          </Link>
         </li>
 
         <li>
@@ -52,7 +42,7 @@ function Navbar() {
             type="button"
             onClick={handleBookAppointmentClick}
           >
-            <FontAwesomeIcon icon="fa-solid fa-plus" /> Add Patient
+            Add Patient
           </button>
         </li>
       </ul>

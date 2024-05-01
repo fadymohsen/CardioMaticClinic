@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function AddPatient() {
   const [name, setName] = useState("");
@@ -18,31 +19,39 @@ export default function AddPatient() {
   const [medicalHistory, setMedicalHistory] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      // Your submit logic here
-    } catch (error) {
-      console.error("Error submitting data:", error);
-      setError("An error occurred while processing your request");
-    }
-
-    setLoading(false);
+  const handleBookAppointmentClick = () => {
+    navigate("/home");
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   try {
+  //     // Your submit logic here
+  //   } catch (error) {
+  //     console.error("Error submitting data:", error);
+  //     setError("An error occurred while processing your request");
+  //   }
+
+  //   setLoading(false);
+  // };
 
   return (
     <>
-    <Navbar></Navbar>
+      <Navbar></Navbar>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-lg shadow-md rounded-md p-6">
           <h1 className="flex justify-center text-5xl gap-2 text-primary">
             Add Patient
           </h1>
 
-          <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+          <form
+            className="mt-6 space-y-6"
+            onSubmit={handleBookAppointmentClick}
+          >
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <input
@@ -76,7 +85,7 @@ export default function AddPatient() {
                 <input
                   id="age"
                   name="age"
-                  type="number"
+                  type="date"
                   autoComplete="age"
                   placeholder="Age"
                   required

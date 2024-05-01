@@ -1,6 +1,6 @@
 import React from "react";
 import "../Styles/Footer.css";
-import SubscribeNewsletter from "./SubscribeNewsletter";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -8,31 +8,22 @@ function Footer() {
       <div className="footer-container">
         <div className="ft-info">
           <div className="ft-info-p1">
-            <p className="ft-title">
-              Pulse <span className="ft-sign">+</span>
-            </p>
+            <p className="ft-title">Pulse</p>
           </div>
-
-          <SubscribeNewsletter />
         </div>
 
         <div className="ft-list">
           <p className="ft-list-title">Quick Links</p>
           <ul className="ft-list-items">
             <li>
-              <a href="#home">Home</a>
+              <Link to="/home" className="navbar-links">
+                Home
+              </Link>
             </li>
             <li>
-              <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#reviews">Reviews</a>
-            </li>
-            <li>
-              <a href="#doctors">Doctors</a>
-            </li>
-            <li>
-              <a href="#Contact">Contact</a>
+              <Link to="/patient-record" className="navbar-links">
+                Patient Record
+              </Link>
             </li>
           </ul>
         </div>

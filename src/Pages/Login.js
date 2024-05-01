@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -75,14 +75,6 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="/"
-                    className="font-semibold text-primary hover:text-sky-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
@@ -115,12 +107,12 @@ export default function Login() {
 
           <p className="mt-6 text-center text-sm text-gray-500">
             Not a member?{" "}
-            <a
-              href="/"
+            <Link
+              to="/signup"
               className="font-semibold leading-6 text-primary hover:text-sky-500"
             >
               Create new account
-            </a>
+            </Link>
           </p>
         </div>
       </div>

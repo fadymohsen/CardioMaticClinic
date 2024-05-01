@@ -20,7 +20,7 @@ function Navbar() {
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <Link to="/" className="navbar-links">
+          <Link to="home" className="navbar-links">
             Home
           </Link>
         </li>

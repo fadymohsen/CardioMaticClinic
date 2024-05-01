@@ -1,30 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCommentDots,
-  faBars,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const openNav = () => {
     setNav(!nav);
-  };
-
-  const handleChatBtnClick = () => {
-    if (!isButtonDisabled) {
-      toast.info("Experiencing high traffic, Please wait a moment.", {
-        position: toast.POSITION.TOP_CENTER,
-        onOpen: () => setIsButtonDisabled(true),
-        onClose: () => setIsButtonDisabled(false),
-      });
-    }
   };
 
   return (
@@ -39,11 +23,6 @@ function Navbar() {
           <Link to="/" className="navbar-links">
             Home
           </Link>
-        </li>
-        <li>
-          <a href="#services" className="navbar-links">
-            Services
-          </a>
         </li>
         <li>
           <a href="#about" className="navbar-links">
@@ -61,15 +40,6 @@ function Navbar() {
           </a>
         </li>
       </ul>
-
-      <button
-        className="navbar-btn"
-        type="button"
-        disabled={isButtonDisabled}
-        onClick={handleChatBtnClick}
-      >
-        <FontAwesomeIcon icon={faCommentDots} /> Live Chat
-      </button>
 
       {/* Mobile */}
       <div className={`mobile-navbar ${nav ? "open-nav" : ""}`}>

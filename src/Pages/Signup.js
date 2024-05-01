@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login() {
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -36,13 +36,13 @@ export default function Login() {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 mt-20 ">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm shadow-md rounded-md p-6">
           <h1 className="flex justify-center text-5xl gap-2 text-primary">
             Pulse
           </h1>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Sign up to your account
           </h2>
 
           <form className="mt-6 space-y-6" onSubmit={handleSubmit}>

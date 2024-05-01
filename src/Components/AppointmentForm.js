@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/AppointmentForm.css";
 import { ToastContainer, toast } from "react-toastify";
+import Navbar from "./Navbar";
 
 function AppointmentForm() {
   useEffect(() => {
@@ -71,90 +72,90 @@ function AppointmentForm() {
 
   return (
     <div className="appointment-form-section">
-      <h1 className="legal-siteTitle">
-        <Link to="/">
-          Pulse <span className="legal-siteSign">+</span>
-        </Link>
-      </h1>
+      <Navbar></Navbar>
 
-      <div className="form-container">
-        <h2 className="form-title">
-          <span>Book Appointment</span>
-        </h2>
+      <div className="flex justify-center align-middle">
+        <div className="form-container w-5/12 ">
+          <h2 className="form-title">
+            <span>Book Appointment</span>
+          </h2>
 
-        <form className="form-content" onSubmit={handleSubmit}>
-          <label>
-            Patient Full Name:
-            <input
-              type="text"
-              value={patientName}
-              onChange={(e) => setPatientName(e.target.value)}
-              required
-            />
-            {formErrors.patientName && (
-              <p className="error-message">{formErrors.patientName}</p>
-            )}
-          </label>
+          <form className="form-content" onSubmit={handleSubmit}>
+            <label>
+              Patient Full Name:
+              <input
+                type="text"
+                value={patientName}
+                onChange={(e) => setPatientName(e.target.value)}
+                required
+              />
+              {formErrors.patientName && (
+                <p className="error-message">{formErrors.patientName}</p>
+              )}
+            </label>
 
-          <br />
-          <label>
-            Patient Phone Number:
-            <input
-              type="text"
-              value={patientNumber}
-              onChange={(e) => setPatientNumber(e.target.value)}
-              required
-            />
-            {formErrors.patientNumber && (
-              <p className="error-message">{formErrors.patientNumber}</p>
-            )}
-          </label>
+            <br />
+            <label>
+              Patient Phone Number:
+              <input
+                type="text"
+                value={patientNumber}
+                onChange={(e) => setPatientNumber(e.target.value)}
+                required
+              />
+              {formErrors.patientNumber && (
+                <p className="error-message">{formErrors.patientNumber}</p>
+              )}
+            </label>
 
-          <br />
-          <label>
-            Patient Gender:
-            <select
-              value={patientGender}
-              onChange={(e) => setPatientGender(e.target.value)}
-              required
+            <br />
+            <label>
+              Patient Gender:
+              <select
+                value={patientGender}
+                onChange={(e) => setPatientGender(e.target.value)}
+                required
+              >
+                <option value="default">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="private">I will inform Doctor only</option>
+              </select>
+              {formErrors.patientGender && (
+                <p className="error-message">{formErrors.patientGender}</p>
+              )}
+            </label>
+
+            <br />
+            <label>
+              Preferred Appointment Time:
+              <input
+                type="datetime-local"
+                value={appointmentTime}
+                onChange={(e) => setAppointmentTime(e.target.value)}
+                required
+              />
+              {formErrors.appointmentTime && (
+                <p className="error-message">{formErrors.appointmentTime}</p>
+              )}
+            </label>
+
+            <br />
+            <div className="flex justify-center">
+              <button type="submit" className="text-appointment-btn font-bold">
+                Confirm Appointment
+              </button>
+            </div>
+
+            <p
+              className="success-message"
+              style={{ display: isSubmitted ? "block" : "none" }}
             >
-              <option value="default">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="private">I will inform Doctor only</option>
-            </select>
-            {formErrors.patientGender && (
-              <p className="error-message">{formErrors.patientGender}</p>
-            )}
-          </label>
-
-          <br />
-          <label>
-            Preferred Appointment Time:
-            <input
-              type="datetime-local"
-              value={appointmentTime}
-              onChange={(e) => setAppointmentTime(e.target.value)}
-              required
-            />
-            {formErrors.appointmentTime && (
-              <p className="error-message">{formErrors.appointmentTime}</p>
-            )}
-          </label>
-
-          <br />
-          <button type="submit" className="text-appointment-btn">
-            Confirm Appointment
-          </button>
-
-          <p
-            className="success-message"
-            style={{ display: isSubmitted ? "block" : "none" }}
-          >
-            Appointment details has been sent to the patients phone number via
-            SMS.
-          </p>
-        </form>
+              Appointment details has been sent to the patients phone number via
+              SMS.
+            </p>
+          </form>
+        </div>
       </div>
 
       <ToastContainer autoClose={5000} limit={1} closeButton={false} />

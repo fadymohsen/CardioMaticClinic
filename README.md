@@ -1,78 +1,33 @@
-# Health Plus
+## CardioMatic Clinic
 
-Welcome to the Health Plus project repository! This is a React-based website aimed at providing accessible and personalized healthcare services to users. The website allows users to connect with expert doctors, schedule appointments, and receive expert medical advice.
+### Technologies
+- **Backend:** Node.js with TypeScript
+- **Frontend:** React
+- **Database:** PostgreSQL
 
-## Project Overview
+### Naming Conventions
+- Use `camelCase` for variables and functions: `patientRecord`, `calculateBMI()`
+- Use `PascalCase` for class names: `CardiovascularSystem`
+- Use `UPPER_CASE` for constants: `MAX_HEART_RATE`
 
-- **Website**: [Health Plus](https://alkaison.github.io/Health-Plus/ "Health Plus")
-- **Framework**: React.js
-- **Deployment**: GitHub Pages
-- **Libraries**: React-Toastify, React Router DOM, FontAwesomeIcon
+### Code Structure
+- Keep line length to a maximum of 80 characters.
+- Group related code blocks together and separate them with blank lines for readability.
+- Use descriptive variable and function names to make the code self-explanatory.
 
-## Features
+### Error Handling
+- Use try-except blocks to handle exceptions and provide meaningful error messages.
 
-- Easily schedule appointments with the specialists.
-- Engage in virtual consultations to receive expert medical advice.
-- Responsive UI design for seamless user experience across devices.
-- Utilizes React-Toastify for notifications, React Router DOM for page routing, and FontAwesomeIcon for icons.
-- Deployed using GitHub Pages for easy access and sharing.
+### Team Structure
+- **Project Manager:** Fady Mohsen
+- **Backend Developers:** Mohamad Sayed Diab & Mohamad Sayed Mosilhe.
+- **Frontend Developers:** Reem Adel & Rana Ibrahim.
+- **Security & Testing:** Fady Mohsen & Sondos Mohamad.
 
-## Screenshots
-
-### Hero Section
-
-![Health-Plus Image-1](https://i.postimg.cc/0Q4839KN/Health-Plus-Image1.png)
-
-### Information Section
-
-![Health-Plus Image-2](https://i.postimg.cc/zvRJY4TF/Health-Plus-Image2.png)
-
-### About Section
-
-![Health-Plus Image-3](https://i.postimg.cc/8zGrwbV0/Health-Plus-Image3.png)
-
-### Why Choose Health Plus?
-
-![Health-Plus Image-4](https://i.postimg.cc/fknMz5Kn/Health-Plus-Image4.png)
-
-### Reviews Section
-
-![Health-Plus Image-5](https://i.postimg.cc/xjkHdCRt/Health-Plus-Image5.png)
-
-### Doctors Section
-
-![Health-Plus Image-6](https://i.postimg.cc/8PM6h0xv/Health-Plus-Image6.png)
-
-### Footer Section
-
-![Health-Plus Image-7](https://i.postimg.cc/sftWGrHy/Health-Plus-Image7.png)
-
-### Legal Documents Page
-
-![Health-Plus Image-8](https://i.postimg.cc/FKskXszb/Health-Plus-Image8.png)
-
-### Appointment Form Page
-
-![Health-Plus Image-9](https://i.postimg.cc/2SxLtBk8/Health-Plus-Image9.png)
-
-## Deployment
-
-The website is deployed using GitHub Pages and can be accessed at [https://alkaison.github.io/Health-Plus/](https://alkaison.github.io/Health-Plus/).
-
-## Getting Started
-
-To run the project locally:
-
-1. Clone this repository: `git clone https://github.com/Alkaison/Health-Plus.git`
-2. Navigate to the project directory: `cd Health-Plus`
-3. Install dependencies: `npm install`
-4. Start the development server: `npm start`
-5. Open your browser and visit: `http://localhost:3000/Health-Plus`
-
-## Contributing
-
-Contributions are welcome! If you find a bug or have a feature request, please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](./LICENSE "Project LICENSE").
+### Team Members Contacts
+- fady.seha01@eng-st.cu.edu.eg
+- Reem.Hamid01@eng-st.cu.edu.eg
+- Rana.essawi02@eng-st.cu.edu.eg
+- mohammed.abdulghani02@eng-st.cu.edu.eg
+- sondos.mohamed02@eng-st.cu.edu.eg
+- Mohamed.Al-Baydaq02@eng-st.cu.edu.eg

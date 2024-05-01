@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -9,29 +10,23 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Fetching data from a JSON file (assuming the JSON structure has 'email' and 'password' fields)
-      const response = await fetch("/src/Assets/data.json"); // Adjust the path as needed
-      const data = await response.json();
-
-      // Verifying email and password
-      const user = data.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (user) {
-        // Success: Do something (e.g., redirect)
-        console.log("Login successful!");
-      } else {
-        setError("Invalid email or password");
+      // Data validation
+      if (!name || !age || !gender || !phoneNum || !email || !password) {
+        setError("Please fill in all fields");
+        return;
       }
+
+      // Redirect to sign-in page after successful submission
+      navigate("/");
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error submitting form:", error);
       setError("An error occurred while processing your request");
     }
 
@@ -45,10 +40,12 @@ export default function SignUp() {
           <h1 className="flex justify-center text-5xl gap-2 text-primary">
             Pulse
           </h1>
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Sign up to your account
+          </h2>
 
           <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
             <div>
-            
               <div className="mt-2">
                 <input
                   id="name"
@@ -64,25 +61,22 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div>
-              
-              <div className="mt-2">
-                <input
-                  id="age"
-                  name="age"
-                  type="number"
-                  autoComplete="age"
-                  placeholder="Enter your age"
-                  required
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
+            <div className="mt-2">
+              <label htmlFor="age">Birth date</label>
+              <input
+                id="age"
+                name="age"
+                type="date"
+                autoComplete="age"
+                placeholder="Enter your age"
+                required
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              />
             </div>
 
             <div>
-             
               <div className="mt-2">
                 <select
                   id="gender"
@@ -99,7 +93,6 @@ export default function SignUp() {
             </div>
 
             <div>
-            
               <div className="mt-2">
                 <input
                   id="phoneNum"
@@ -116,7 +109,6 @@ export default function SignUp() {
             </div>
 
             <div>
-             
               <div className="mt-2">
                 <input
                   id="email"
@@ -133,7 +125,6 @@ export default function SignUp() {
             </div>
 
             <div>
-             
               <div className="mt-2">
                 <input
                   id="password"
@@ -159,7 +150,7 @@ export default function SignUp() {
                   loading && "opacity-50 cursor-not-allowed"
                 }`}
               >
-                {loading ? "Signing up..." : "Sign up"}
+                {"Sign up"}
               </button>
             </div>
           </form>

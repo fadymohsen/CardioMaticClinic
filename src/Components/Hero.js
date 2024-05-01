@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Doctor from "../Assets/doctor-picture.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Styles/Hero.css";
 
 function Hero() {
@@ -34,11 +34,12 @@ function Hero() {
 
   return (
     <div className="section-container">
-      <div className="hero-section">
+      <div className="hero-section" id="home">
         <div className="text-section">
           <p className="text-headline">❤️ Health comes first</p>
           <h2 className="text-title">
-          CardioMatic: Where Every Beat Matters!          </h2>
+            CardioMatic: Where Every Beat Matters!{" "}
+          </h2>
           <button
             className="text-appointment-btn"
             type="button"

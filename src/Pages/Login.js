@@ -16,7 +16,7 @@ export default function Login() {
       console.log("Submitting form...");
 
       const response = await fetch(
-        "https://raw.githubusercontent.com/fadymohsen/CardioMaticClinic/main/src/Assets/data.json?token=GHSAT0AAAAAACP4PWOSPIKB3JRKCFRGEQTGZRSX76A"
+        "https://raw.githubusercontent.com/mohamedmosilhy/data_set/main/data.json"
       );
 
       if (!response.ok) {

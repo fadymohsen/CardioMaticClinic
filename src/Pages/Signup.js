@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -41,24 +45,85 @@ export default function SignUp() {
           <h1 className="flex justify-center text-5xl gap-2 text-primary">
             Pulse
           </h1>
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign up to your account
-          </h2>
 
           <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Email address
-              </label>
+            
+              <div className="mt-2">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Enter your name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+              
+              <div className="mt-2">
+                <input
+                  id="age"
+                  name="age"
+                  type="number"
+                  autoComplete="age"
+                  placeholder="Enter your age"
+                  required
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+             
+              <div className="mt-2">
+                <select
+                  id="gender"
+                  name="gender"
+                  required
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+            
+              <div className="mt-2">
+                <input
+                  id="phoneNum"
+                  name="phoneNum"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="Enter your phone number"
+                  required
+                  value={phoneNum}
+                  onChange={(e) => setPhoneNum(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+             
               <div className="mt-2">
                 <input
                   id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
+                  placeholder="Enter your email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -68,28 +133,14 @@ export default function SignUp() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900 "
-                >
-                  Password
-                </label>
-                <div className="text-sm">
-                  <a
-                    href="/"
-                    className="font-semibold text-primary hover:text-sky-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
+             
               <div className="mt-2">
                 <input
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
+                  placeholder="Enter your password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -108,18 +159,18 @@ export default function SignUp() {
                   loading && "opacity-50 cursor-not-allowed"
                 }`}
               >
-                {loading ? "Signing in..." : "Sign in"}
+                {loading ? "Signing up..." : "Sign up"}
               </button>
             </div>
           </form>
 
           <p className="mt-6 text-center text-sm text-gray-500">
-            Not a member?{" "}
+            Already have an account?{" "}
             <a
               href="/"
               className="font-semibold leading-6 text-primary hover:text-sky-500"
             >
-              Create new account
+              Sign in
             </a>
           </p>
         </div>

@@ -3,26 +3,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [nav, setNav] = useState(false);
+  const navigate = useNavigate();
 
   const openNav = () => {
     setNav(!nav);
   };
 
+  const handleBookAppointmentClick = () => {
+    navigate("/add-patient");
+  };
+
   return (
     <div className="navbar-section">
       <h1 className="navbar-title">
-        <Link to="/">Pulse</Link>
+        <Link to="/home">Pulse</Link>
       </h1>
 
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <Link to="#home" className="navbar-links">
+          <a href="#home" className="navbar-links">
             Home
-          </Link>
+          </a>
         </li>
         <li>
           <a href="#about" className="navbar-links">
@@ -38,6 +44,16 @@ function Navbar() {
           <a href="#doctors" className="navbar-links">
             Doctors
           </a>
+        </li>
+
+        <li>
+          <button
+            className="text-appointment-btn"
+            type="button"
+            onClick={handleBookAppointmentClick}
+          >
+            <FontAwesomeIcon icon="fa-solid fa-plus" /> Add Patient
+          </button>
         </li>
       </ul>
 

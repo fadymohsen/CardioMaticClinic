@@ -42,7 +42,7 @@ export default function PatientRecord() {
   return (
     <>
       <Navbar />
-      <div className="overflow-x-auto mt-8">
+      <div className="overflow-x-auto mt-8" style={{ background: "linear-gradient(to right, #ECF2FF, #FBFCFF)", paddingBottom: "2rem" }}>
         {/* Records with Diagnosis */}
         <div className="mb-8">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Records with Diagnosis</h3>
@@ -111,18 +111,16 @@ export default function PatientRecord() {
                    
                   </td>
                 </tr>
-
               ))}
-              
             </tbody>
           </table>
           <button className="text-appointment-btn" type="button" onClick={handleBookAppointmentClick}>
-                      <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
-                    </button>
+            <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
+          </button>
         </div>
 
         {/* Tests and Treatment Table */}
-        <div>
+        <div style={{ marginBottom: "2rem" }}>
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Tests and Treatment</h2>
           <table className="min-w-full bg-white rounded-md overflow-hidden shadow-md">
             <thead className="bg-primary text-white">

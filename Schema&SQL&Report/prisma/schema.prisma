@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  PatientId      String          @id @default(uuid())
+  name           String
+  age            Int
+  gender         String
+  contactinfo    String
+  MedicalHistory String
+  role           Role            @default(Patient)
+  Appointment    Appointment[]
+  MedicalRecord  MedicalRecord[]
+}
+
+model Phyician {
+  phyicianId     String          @id @default(uuid())
+  name           String
+  specialization String
+  contactinfo    String
+  role           Role            @default(Doctor)
+  Appointment    Appointment[]
+  MedicalRecord  MedicalRecord[]
+}
+
+model Appointment {
+  appointmentId String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  patient       Patient  @relation(fields: [patientId], references: [PatientId])
+  patientId     String
+  physician     Phyician @relation(fields: [phyicianId], references: [phyicianId])
+  phyicianId    String
+}
+
+model MedicalRecord {
+  recotdId      String         @id @default(uuid())
+  patient       Patient        @relation(fields: [patientId], references: [PatientId])
+  patientId     String
+  physician     Phyician       @relation(fields: [phyicianId], references: [phyicianId])
+  phyicianId    String
+  date          DateTime       @default(now())
+  symptoms      String
+  diagnosis     String
+  treatmentPlan String
+  Prescription  Prescription[]
+  Diagnosis     Diagnosis[]
+  Test          Test[]
+  treatment     treatment[]
+}
+
+model Prescription {
+  prescriptionID String        @id @default(uuid())
+  record         MedicalRecord @relation(fields: [recotdId], references: [recotdId])
+  recotdId       String
+  medication     String
+  dosage         String
+  frequency      String
+}
+
+model Diagnosis {
+  diagnosisID            String        @id @default(uuid())
+  record                 MedicalRecord @relation(fields: [recotdId], references: [recotdId])
+  recotdId               String
+  descriptionOfDiagnosis String
+  severity               String
+}
+
+model Test {
+  testId     String        @id @default(uuid())
+  record     MedicalRecord @relation(fields: [recotdId], references: [recotdId])
+  recotdId   String
+  typeOfTest String
+  result     String
+  date       DateTime
+}
+
+model treatment {
+  teatmentId             String        @id @default(uuid())
+  record                 MedicalRecord @relation(fields: [recotdId], references: [recotdId])
+  recotdId               String
+  typeOfTreatment        String
+  descriptionOfTreatment String
+}
+
+enum Role {
+  Patient
+  Doctor
+}

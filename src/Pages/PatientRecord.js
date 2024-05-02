@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,9 @@ import Footer from "../Components/Footer";
 
 export default function PatientRecord() {
   const navigate = useNavigate();
+
+  // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   // State for records with diagnosis
   const [diagnosisRecords, setDiagnosisRecords] = useState([
@@ -39,10 +42,38 @@ export default function PatientRecord() {
     navigate("/appointment");
   };
 
+  // Function to filter patient records based on search query
+  const filteredDiagnosisRecords = diagnosisRecords.filter(record =>
+    record.diagnosis.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredMedicineRecords = medicineRecords.filter(record =>
+    record.medicine.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredVisits = visits.filter(visit =>
+    visit.doctor.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredTestsAndTreatments = testsAndTreatments.filter(item =>
+    item.diagnoses.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <Navbar />
       <div className="overflow-x-auto mt-8" style={{ background: "linear-gradient(to right, #ECF2FF, #FBFCFF)", paddingBottom: "2rem" }}>
+        {/* Search Bar */}
+        <div className="mb-8">
+          <input
+            type="text"
+            placeholder="Search Patient..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+
         {/* Records with Diagnosis */}
         <div className="mb-8">
           <h3 className="text-lg font-semibold text-gray-800 mb-2">Records with Diagnosis</h3>
@@ -54,7 +85,7 @@ export default function PatientRecord() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {diagnosisRecords.map((record) => (
+              {filteredDiagnosisRecords.map((record) => (
                 <tr key={record.id}>
                   <td className="px-4 py-2 whitespace-nowrap">{record.visitDate}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{record.diagnosis}</td>
@@ -76,7 +107,7 @@ export default function PatientRecord() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {medicineRecords.map((record) => (
+              {filteredMedicineRecords.map((record) => (
                 <tr key={record.id}>
                   <td className="px-4 py-2 whitespace-nowrap">{record.medicine}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{record.dosage}</td>
@@ -101,15 +132,13 @@ export default function PatientRecord() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {visits.map((visit) => (
+              {filteredVisits.map((visit) => (
                 <tr key={visit.id}>
                   <td className="px-4 py-2 whitespace-nowrap">{visit.doctor}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{visit.date}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{visit.time}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{visit.visitType}</td>
-                  <td className="px-4 py-2 whitespace-nowrap">
-                   
-                  </td>
+                  <td className="px-4 py-2 whitespace-nowrap"></td>
                 </tr>
               ))}
             </tbody>
@@ -130,7 +159,7 @@ export default function PatientRecord() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {testsAndTreatments.map((item) => (
+              {filteredTestsAndTreatments.map((item) => (
                 <tr key={item.id}>
                   <td className="px-4 py-2 whitespace-nowrap">{item.visitDate}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{item.diagnoses}</td>

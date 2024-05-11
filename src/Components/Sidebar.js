@@ -23,7 +23,7 @@ export function Sidebar({ tab_index }) {
   ];
 
   return (
-    <Card className="h-screen w-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
+    <Card className="h-screen  w-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 sticky top-0 ">
       <div className="mb-2 p-4">
         <Typography variant="h1" className="text-primary text-center">
           Pulse

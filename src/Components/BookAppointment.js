@@ -1,6 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faCalendarCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleCheck,
+  faCalendarCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import "../Styles/BookAppointment.css";
 import DoctorImage from "../Assets/doctor-book-appointment.png"; // Import the image
@@ -9,11 +12,11 @@ function BookAppointment() {
   const navigate = useNavigate();
 
   const handleBookAppointmentClick = () => {
-    navigate("/appointment");
+    navigate("/login");
   };
 
   return (
-    <div className="ba-section">
+    <div className="ba-section" id="book_appoint">
       <div className="ba-image-content">
         <img src={DoctorImage} alt="Doctor Group" className="ba-image1" />
       </div>
@@ -30,19 +33,24 @@ function BookAppointment() {
         </p>
 
         <p className="ba-checks ba-check-first">
-          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} /> Experience
+          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} />{" "}
+          Experience
         </p>
         <p className="ba-checks">
-          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} /> Doctors
+          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} />{" "}
+          Doctors
         </p>
         <p className="ba-checks">
-          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} /> Quality Services
+          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} />{" "}
+          Quality Services
         </p>
         <p className="ba-checks">
-          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} /> Positive Consultation
+          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} />{" "}
+          Positive Consultation
         </p>
         <p className="ba-checks ba-check-last">
-          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} /> Detailed Reports
+          <FontAwesomeIcon icon={faCircleCheck} style={{ color: "#1E8FFD" }} />{" "}
+          Detailed Reports
         </p>
 
         <button

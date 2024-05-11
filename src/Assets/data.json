@@ -1,14 +1,12 @@
 [
   {
     "email": "mohamed@gmail.com",
-    "password": "password1"
+    "password": "123",
+    "role": "patient"
   },
   {
-    "email": "user2@example.com",
-    "password": "password2"
-  },
-  {
-    "email": "user3@example.com",
-    "password": "password3"
+    "email": "fady@gmail.com",
+    "password": "123",
+    "role": "doctor"
   }
 ]

@@ -14,26 +14,46 @@ function Navbar() {
   };
 
   const handleBookAppointmentClick = () => {
-    navigate("/add-patient");
+    navigate("/login");
   };
 
   return (
     <div className="navbar-section">
       <h1 className="navbar-title">
-        <Link to="/home">Pulse</Link>
+        <Link to="#home">Pulse</Link>
       </h1>
 
       {/* Desktop */}
       <ul className="navbar-items">
         <li>
-          <Link to="/home" className="navbar-links">
+          <a href="#home" className="navbar-links">
             Home
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/patient-record" className="navbar-links">
-            Patient Record
-          </Link>
+          <a href="#about" className="navbar-links">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="#book_appoint" className="navbar-links">
+            Why Choose Us
+          </a>
+        </li>
+        <li>
+          <a href="#reviews" className="navbar-links">
+            Reviews
+          </a>
+        </li>
+        <li>
+          <a href="#doctors" className="navbar-links">
+            Doctors
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="navbar-links">
+            Contact
+          </a>
         </li>
 
         <li>
@@ -42,7 +62,7 @@ function Navbar() {
             type="button"
             onClick={handleBookAppointmentClick}
           >
-            Add Patient
+            Log in | Register
           </button>
         </li>
       </ul>

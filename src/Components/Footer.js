@@ -16,14 +16,34 @@ function Footer() {
           <p className="ft-list-title">Quick Links</p>
           <ul className="ft-list-items">
             <li>
-              <Link to="/home" className="navbar-links">
+              <a href="#home" className="navbar-links">
                 Home
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/patient-record" className="navbar-links">
-                Patient Record
-              </Link>
+              <a href="#about" className="navbar-links">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#book_appoint" className="navbar-links">
+                Why Choose Us
+              </a>
+            </li>
+            <li>
+              <a href="#reviews" className="navbar-links">
+                Reviews
+              </a>
+            </li>
+            <li>
+              <a href="#doctors" className="navbar-links">
+                Doctors
+              </a>
+            </li>
+            <li>
+              <a href="#contact" className="navbar-links">
+                Contact
+              </a>
             </li>
           </ul>
         </div>

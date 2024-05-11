@@ -16,9 +16,7 @@ export default function Login() {
     try {
       console.log("Submitting form...");
 
-      const response = await fetch(
-        "https://raw.githubusercontent.com/fadymohsen/CardioMaticClinic/main/src/Assets/data.json?token=GHSAT0AAAAAACP4PWOSHU7K7YOFBUFIXO32ZR7TYSQ"
-      );
+      const response = await fetch("http://localhost:8000/users");
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

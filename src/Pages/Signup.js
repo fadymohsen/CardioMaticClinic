@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
+  const [gender, setGender] = useState("male");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [role, setRole] = useState("patient");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,22 +26,22 @@ export default function SignUp() {
         !lastName ||
         !age ||
         !gender ||
-        !phoneNum ||
         !email ||
         !password ||
         !confirmPassword
       ) {
         setError("Please fill in all fields");
+        setLoading(false);
         return;
       }
 
       if (password !== confirmPassword) {
         setError("Passwords do not match");
+        setLoading(false);
         return;
       }
-
       // Redirect to sign-in page after successful submission
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error("Error submitting form:", error);
       setError("An error occurred while processing your request");
@@ -174,6 +175,19 @@ export default function SignUp() {
               </div>
             </div>
 
+            <div>
+              <select
+                id="role"
+                name="role"
+                className="mt-2 block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+              </select>
+            </div>
+
             {error && <div className="text-red-600 text-sm">{error}</div>}
 
             <div>
@@ -191,12 +205,12 @@ export default function SignUp() {
 
           <p className="mt-6 text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <a
-              href="/"
+            <Link
+              to="/login"
               className="font-semibold leading-6 text-primary hover:text-sky-500"
             >
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>

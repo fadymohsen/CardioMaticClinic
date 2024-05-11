@@ -1,12 +1,19 @@
-[
-  {
-    "email": "mohamed@gmail.com",
-    "password": "123",
-    "role": "patient"
-  },
-  {
-    "email": "fady@gmail.com",
-    "password": "123",
-    "role": "doctor"
-  }
-]
+{
+  "users": [
+    {
+      "email": "mohamed@gmail.com",
+      "password": "123",
+      "role": "patient"
+    },
+    {
+      "email": "fady@gmail.com",
+      "password": "123",
+      "role": "doctor"
+    },
+    {
+      "email": "sondos@gmail.com",
+      "password": "123",
+      "role": "doctor"
+    }
+  ]
+}

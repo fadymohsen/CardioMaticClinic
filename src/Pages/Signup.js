@@ -9,6 +9,7 @@ export default function SignUp() {
   const [phoneNum, setPhoneNum] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -26,9 +27,15 @@ export default function SignUp() {
         !gender ||
         !phoneNum ||
         !email ||
-        !password
+        !password ||
+        !confirmPassword
       ) {
         setError("Please fill in all fields");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        setError("Passwords do not match");
         return;
       }
 
@@ -45,7 +52,7 @@ export default function SignUp() {
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm shadow-md rounded-md p-6">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm shadow-md rounded-md p-6 space-y-6">
           <h1 className="flex justify-center text-5xl gap-2 text-primary">
             Pulse
           </h1>
@@ -53,7 +60,7 @@ export default function SignUp() {
             Sign up to your account
           </h2>
 
-          <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <div className="mt-2">
                 <input
@@ -113,41 +120,57 @@ export default function SignUp() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className=" block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div className="mt-2 flex gap-3 ">
-                <label htmlFor="age" className=" w-1/3 flex items-center">
-                  Birth date
-                </label>
-                <input
-                  id="age"
-                  name="age"
-                  type="date"
-                  autoComplete="age"
-                  placeholder="Enter your age"
-                  required
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
                   className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 />
               </div>
+            </div>
 
-              <div>
-                <div className="mt-2">
-                  <select
-                    id="gender"
-                    name="gender"
-                    required
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                    className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                  >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
-                </div>
+            <div>
+              <div className="mt-2">
+                <input
+                  id="confirm_password"
+                  name="confirm_password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="Confirm your password"
+                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div className="mt-2 flex gap-3">
+              <label htmlFor="age" className="w-1/3 flex items-center">
+                Birth date
+              </label>
+              <input
+                id="age"
+                name="age"
+                type="date"
+                autoComplete="age"
+                placeholder="Enter your age"
+                required
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              />
+            </div>
+
+            <div>
+              <div className="mt-2">
+                <select
+                  id="gender"
+                  name="gender"
+                  required
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
               </div>
             </div>
 

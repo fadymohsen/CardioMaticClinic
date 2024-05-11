@@ -4,73 +4,63 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
 } from "@material-tailwind/react";
 import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
   PowerIcon,
-} from "@heroicons/react/24/solid";
+  ChartBarIcon,
+  TableCellsIcon,
+} from "@heroicons/react/24/outline";
 
-export function Sidebar() {
+import "../Styles/Navbar.css";
+import { Link } from "react-router-dom";
+import { AvatarCustomStyles } from "./Avatar";
+
+export function Sidebar({ tab_index }) {
+  // Define the list of menu items
+  const menuItems = [
+    { icon: ChartBarIcon, text: "Dashboard", path: "/dashboard" },
+    { icon: TableCellsIcon, text: "Medical Records", path: "/records" },
+  ];
+
   return (
-    <Card className="h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
+    <Card className="h-screen w-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 ">
       <div className="mb-2 p-4">
-        <Typography variant="h5" color="blue-gray">
-          Sidebar
+        <Typography variant="h1" className="text-primary text-center">
+          Pulse
         </Typography>
       </div>
+      <div className="flex justify-center mb-8 gap-3">
+        <AvatarCustomStyles></AvatarCustomStyles>
+        <div className="flex flex-col">
+          <span className="mx-2 font-medium ">Dr.Mohamed Mosilhy</span>
+          <span className="mx-2 text-xs ">Heart Failure Specialist</span>
+        </div>
+      </div>
 
-      <List className="flex flex-col justify-between h-4/5">
-        <ListItem>
-          <ListItemPrefix>
-            <PresentationChartBarIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Dashboard
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <ShoppingBagIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          E-Commerce
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip
-              value="14"
-              size="sm"
-              variant="ghost"
-              color="blue-gray"
-              className="rounded-full"
-            />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Profile
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <PowerIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          Log Out
-        </ListItem>
+      <List className="flex flex-col gap-5 h-4/5">
+        {menuItems.map((item, index) => (
+          <Link to={item.path} key={index}>
+            <ListItem
+              className={`flex gap-3 ${
+                tab_index === index ? "text-primary" : "bg-white"
+              }`}
+            >
+              <ListItemPrefix>
+                <item.icon className="h-6 w-6" />
+              </ListItemPrefix>
+              {item.text}
+            </ListItem>
+          </Link>
+        ))}
+        <hr />
+        <Link to={"/"} key={100}>
+          <ListItem className="flex gap-3 bg-white">
+            <ListItemPrefix>
+              <PowerIcon className="h-6 w-6" />
+            </ListItemPrefix>
+            Log Out
+          </ListItem>
+        </Link>
       </List>
     </Card>
   );

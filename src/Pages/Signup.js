@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
@@ -18,7 +19,15 @@ export default function SignUp() {
 
     try {
       // Data validation
-      if (!name || !age || !gender || !phoneNum || !email || !password) {
+      if (
+        !firstName ||
+        !lastName ||
+        !age ||
+        !gender ||
+        !phoneNum ||
+        !email ||
+        !password
+      ) {
         setError("Please fill in all fields");
         return;
       }
@@ -48,61 +57,30 @@ export default function SignUp() {
             <div>
               <div className="mt-2">
                 <input
-                  id="name"
-                  name="name"
+                  id="first_name"
+                  name="first_name"
                   type="text"
                   autoComplete="name"
-                  placeholder="Enter your name"
+                  placeholder="Enter your first name"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 />
-              </div>
-            </div>
-
-            <div className="mt-2">
-              <label htmlFor="age">Birth date</label>
-              <input
-                id="age"
-                name="age"
-                type="date"
-                autoComplete="age"
-                placeholder="Enter your age"
-                required
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-              />
-            </div>
-
-            <div>
-              <div className="mt-2">
-                <select
-                  id="gender"
-                  name="gender"
-                  required
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
               </div>
             </div>
 
             <div>
               <div className="mt-2">
                 <input
-                  id="phoneNum"
-                  name="phoneNum"
-                  type="tel"
-                  autoComplete="tel"
-                  placeholder="Enter your phone number"
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Enter your last name"
                   required
-                  value={phoneNum}
-                  onChange={(e) => setPhoneNum(e.target.value)}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 />
               </div>
@@ -137,6 +115,39 @@ export default function SignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                   className=" block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 />
+              </div>
+
+              <div className="mt-2 flex gap-3 ">
+                <label htmlFor="age" className=" w-1/3 flex items-center">
+                  Birth date
+                </label>
+                <input
+                  id="age"
+                  name="age"
+                  type="date"
+                  autoComplete="age"
+                  placeholder="Enter your age"
+                  required
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                />
+              </div>
+
+              <div>
+                <div className="mt-2">
+                  <select
+                    id="gender"
+                    name="gender"
+                    required
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
               </div>
             </div>
 

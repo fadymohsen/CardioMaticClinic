@@ -17,7 +17,7 @@ export default function Login() {
       console.log("Submitting form...");
 
       const response = await fetch(
-        "https://raw.githubusercontent.com/mohamedmosilhy/data_set/main/data.json"
+        "https://raw.githubusercontent.com/fadymohsen/CardioMaticClinic/main/src/Assets/data.json?token=GHSAT0AAAAAACP4PWOSHU7K7YOFBUFIXO32ZR7TYSQ"
       );
 
       if (!response.ok) {
@@ -28,13 +28,16 @@ export default function Login() {
       console.log("Data:", data);
 
       const user = data.find(
-        (user) => user.email === email && user.password === password && user.role === role
+        (user) =>
+          user.email === email &&
+          user.password === password &&
+          user.role === role
       );
 
       if (user) {
         console.log("Login successful!");
         // Redirect to /home
-        navigate("/home"); // Use navigate directly without .push
+        navigate("/dashboard"); // Use navigate directly without .push
       } else {
         setError("Invalid email, password, or role");
       }

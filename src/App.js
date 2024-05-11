@@ -8,6 +8,7 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/Signup";
 import AddPatient from "./Pages/Addpatient";
 import PatientRecord from "./Pages/PatientRecord";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="appointment" element={<Appointment />} />
           <Route path="*" element={<NotFound />} />
           <Route path="add-patient" element={<AddPatient />} />

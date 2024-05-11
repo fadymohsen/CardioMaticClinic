@@ -25,7 +25,7 @@ export function Sidebar() {
         </Typography>
       </div>
 
-      <List>
+      <List className="flex flex-col justify-between h-4/5">
         <ListItem>
           <ListItemPrefix>
             <PresentationChartBarIcon className="h-5 w-5" />

@@ -29,7 +29,7 @@ export function Sidebar({ tab_index }) {
           Pulse
         </Typography>
       </div>
-      <div className="flex justify-center mb-8 gap-3">
+      <div className="flex justify-center mb-12 gap-4">
         <AvatarCustomStyles></AvatarCustomStyles>
         <div className="flex flex-col">
           <span className="mx-2 font-medium ">Dr.Mohamed Mosilhy</span>
@@ -37,7 +37,7 @@ export function Sidebar({ tab_index }) {
         </div>
       </div>
 
-      <List className="flex flex-col gap-5 h-4/5">
+      <List className="flex flex-col gap-5 h-4/5 ml-4">
         {menuItems.map((item, index) => (
           <Link to={item.path} key={index}>
             <ListItem

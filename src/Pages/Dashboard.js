@@ -1,3 +1,5 @@
+import { Sidebar } from "../Components/Sidebar";
+
 export default function Dashboard() {
-  return <div>Dashboard</div>;
+  return <Sidebar></Sidebar>;
 }

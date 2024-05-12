@@ -20,6 +20,13 @@ export function Sidebar({ tab_index }) {
   const menuItems = [
     { icon: ChartBarIcon, text: "Dashboard", path: "/dashboard" },
     { icon: TableCellsIcon, text: "Medical Records", path: "/records" },
+    { icon: TableCellsIcon, text: "Prescriptions", path: "/Prescriptions" },
+    { icon: TableCellsIcon, text: "Appointments", path: "/Appointment" },
+    { icon: TableCellsIcon, text: "bookAppointment", path: "/bookAppointment" },
+
+
+
+
   ];
 
   return (

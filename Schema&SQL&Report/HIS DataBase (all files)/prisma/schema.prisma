@@ -13,89 +13,127 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  userId      String     @id @default(uuid())
+  name        String
+  role        Role       @default(Patient)
+  email       String     @unique
+  password    String
+  gender      String
+  age         Int
+  patient     Patient?   @relation(fields: [patientId], references: [patientId])
+  patientId   String
+  physician   Physician? @relation(fields: [physicianId], references: [physicianId])
+  physicianId String
+}
+
 model Patient {
-  PatientId      String          @id @default(uuid())
+  patientId      String          @id @default(uuid())
   name           String
   age            Int
   gender         String
   contactinfo    String
   MedicalHistory String
   role           Role            @default(Patient)
-  Appointment    Appointment[]
-  MedicalRecord  MedicalRecord[]
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+  User           User[]
+  Invoice        Invoice[]
 }
 
-model Phyician {
-  phyicianId     String          @id @default(uuid())
+model Physician {
+  physicianId    String          @id @default(uuid())
   name           String
   specialization String
   contactinfo    String
-  role           Role            @default(Doctor)
-  Appointment    Appointment[]
-  MedicalRecord  MedicalRecord[]
+  role           Role            @default(PCP)
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+  User           User[]
+  Invoice        Invoice[]
+  Prescription   Prescription[]
 }
 
 model Appointment {
-  appointmentId String   @id @default(uuid())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  patient       Patient  @relation(fields: [patientId], references: [PatientId])
+  appointmentId String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  patient       Patient   @relation(fields: [patientId], references: [patientId])
   patientId     String
-  physician     Phyician @relation(fields: [phyicianId], references: [phyicianId])
-  phyicianId    String
+  physician     Physician @relation(fields: [physicianId], references: [physicianId])
+  physicianId   String
 }
 
 model MedicalRecord {
-  recotdId      String         @id @default(uuid())
-  patient       Patient        @relation(fields: [patientId], references: [PatientId])
-  patientId     String
-  physician     Phyician       @relation(fields: [phyicianId], references: [phyicianId])
-  phyicianId    String
-  date          DateTime       @default(now())
-  symptoms      String
-  diagnosis     String
-  treatmentPlan String
-  Prescription  Prescription[]
-  Diagnosis     Diagnosis[]
-  Test          Test[]
-  treatment     treatment[]
+  recordId             String         @id @default(uuid())
+  patient              Patient        @relation(fields: [patientId], references: [patientId])
+  patientId            String
+  physician            Physician      @relation(fields: [physicianId], references: [physicianId])
+  physicianId          String
+  date                 DateTime       @default(now())
+  symptoms             String
+  allergies            String
+  currentSmokingStatus String
+  alcholIntake         Boolean
+  diagnosis            String
+  treatmentPlan        String
+  prescriptions        Prescription[]
+  diagnoses            Diagnosis[]
+  tests                Test[]
+  treatments           Treatment[]
 }
 
 model Prescription {
-  prescriptionID String        @id @default(uuid())
-  record         MedicalRecord @relation(fields: [recotdId], references: [recotdId])
-  recotdId       String
+  prescriptionId String        @id @default(uuid())
+  title          String
+  date           DateTime      @default(now())
+  createdBy      Physician     @relation(fields: [physicianId], references: [physicianId])
+  physicianId    String
+  record         MedicalRecord @relation(fields: [recordId], references: [recordId])
+  recordId       String
   medication     String
   dosage         String
   frequency      String
 }
 
 model Diagnosis {
-  diagnosisID            String        @id @default(uuid())
-  record                 MedicalRecord @relation(fields: [recotdId], references: [recotdId])
-  recotdId               String
-  descriptionOfDiagnosis String
-  severity               String
+  diagnosisId String        @id @default(uuid())
+  record      MedicalRecord @relation(fields: [recordId], references: [recordId])
+  recordId    String
+  description String
+  severity    String
 }
 
 model Test {
   testId     String        @id @default(uuid())
-  record     MedicalRecord @relation(fields: [recotdId], references: [recotdId])
-  recotdId   String
+  record     MedicalRecord @relation(fields: [recordId], references: [recordId])
+  recordId   String
   typeOfTest String
   result     String
   date       DateTime
 }
 
-model treatment {
-  teatmentId             String        @id @default(uuid())
-  record                 MedicalRecord @relation(fields: [recotdId], references: [recotdId])
-  recotdId               String
-  typeOfTreatment        String
-  descriptionOfTreatment String
+model Treatment {
+  treatmentId String        @id @default(uuid())
+  record      MedicalRecord @relation(fields: [recordId], references: [recordId])
+  recordId    String
+  type        String
+  description String
+}
+
+model Invoice {
+  invoiceId   String    @id @default(uuid())
+  patient     Patient   @relation(fields: [patientId], references: [patientId])
+  patientId   String
+  physician   Physician @relation(fields: [physicianId], references: [physicianId])
+  physicianId String
+  invoiceDate DateTime  @default(now())
+  amount      Float
+  description String
 }
 
 enum Role {
   Patient
-  Doctor
+  PCP
+  Admin
 }

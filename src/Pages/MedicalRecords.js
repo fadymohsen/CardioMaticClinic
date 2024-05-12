@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "../Components/Sidebar";
-import { MedicalRecord } from '../Components/Table';
+import { MedicalRecord } from '../Components/MedicalRecordsPatient ';
 
 
 export default function MedicalRecords() {

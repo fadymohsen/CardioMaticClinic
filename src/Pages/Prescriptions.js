@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "../Components/Sidebar";
-import { Prescriptions } from '../Components/Table2';
+import { Prescriptions } from '../Components/PrescriptionsPatient';
 
 export default function PrescriptionsPage() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "../Components/Sidebar";
-import { Appointments } from '../Components/table3';
+import { Appointments } from '../Components/AppointmentPatient';
 
 export default function Appointmentspage() {
   return (

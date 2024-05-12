@@ -1,6 +1,7 @@
 import React from "react";
 import { Sidebar } from "../Components/Sidebar";
-import { TableWithStripedRows } from "../Components/Table";
+import { MedicalRecord } from '../Components/Table';
+
 
 export default function MedicalRecords() {
   return (
@@ -17,7 +18,7 @@ export default function MedicalRecords() {
             </p>
           </div>
           <div>
-            <TableWithStripedRows />
+            <MedicalRecord />
           </div>
         </section>
       </div>

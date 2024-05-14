@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/Signup";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./Pages/DashboardAdmin";
 import DoctorsListPage from "./Pages/Doctorlist";
 import PatientListPage from "./Pages/Patientlist";
 import AppointmentsListPage from "./Pages/Appointmentlist";

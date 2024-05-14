@@ -7,6 +7,11 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard";
 import MedicalRecords from "./Pages/MedicalRecords";
+import PrescriptionsPage from"./Pages/Prescriptions";
+import Appointmentspage from"./Pages/Appointments";
+import BookAppointment from "./Pages/BookAppointment";
+
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +22,9 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="dashboard" element={<Dashboard />}></Route>
           <Route path="records" element={<MedicalRecords />}></Route>
+          <Route path="Prescriptions" element={<PrescriptionsPage />}></Route>
+          <Route path="Appointment" element={<Appointmentspage />}></Route>
+          <Route path="bookAppointment" element={<BookAppointment />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("patient"); // Default role is set to patient
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // Ensure useNavigate is imported and initialized
@@ -26,10 +25,7 @@ export default function Login() {
       console.log("Data:", data);
 
       const user = data.find(
-        (user) =>
-          user.email === email &&
-          user.password === password &&
-          user.role === role
+        (user) => user.email === email && user.password === password
       );
 
       if (user) {
@@ -37,7 +33,7 @@ export default function Login() {
         // Redirect to /home
         navigate("/dashboard"); // Use navigate directly without .push
       } else {
-        setError("Invalid email, password, or role");
+        setError("Invalid email, password");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -85,19 +81,6 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
               />
-            </div>
-
-            <div>
-              <select
-                id="role"
-                name="role"
-                className="mt-2 block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="patient">Patient</option>
-                <option value="doctor">Doctor</option>
-              </select>
             </div>
 
             {error && <div className="text-red-600 text-sm">{error}</div>}

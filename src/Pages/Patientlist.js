@@ -1,13 +1,13 @@
 import React from "react";
 import { Sidebar } from "../Components/sidebaradmin";
-import {PatientList} from '../Components/ViewPatientList';
-
+import { PatientList } from "../Components/ViewPatientList";
+import { MembersTable } from "../Components/Table";
 
 export default function PatientListPage() {
   return (
     <>
       <div className="flex">
-        <Sidebar tab_index={1} /> 
+        <Sidebar tab_index={1} />
         <section className="ml-12 mr-8 container mx-auto my-8">
           <div className="mb-8">
             <div className="flex items-center gap-x-3">
@@ -18,7 +18,7 @@ export default function PatientListPage() {
             </p>
           </div>
           <div>
-            <PatientList />
+            <MembersTable />
           </div>
         </section>
       </div>

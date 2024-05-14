@@ -25,7 +25,7 @@ const TABLE_ROWS = [
   // Add more appointment data as needed
 ];
 
-export function Appointments() {
+export function PatientList() {
   return (
     <Card className="h-full w-full">
       <CardBody className="overflow-scroll px-0">

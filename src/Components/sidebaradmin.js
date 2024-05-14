@@ -18,7 +18,7 @@ import {
   export function Sidebar({ tab_index }) {
     // Define the list of menu items
     const menuItems = [
-      { icon: ChartBarIcon, text: "Dashboard", path: "/dashboarda" },
+      { icon: ChartBarIcon, text: "Dashboard", path: "/dashboardAdmin" },
       { icon: TableCellsIcon, text: "View Patient list", path: "/ViewPatient" },
       { icon: TableCellsIcon, text: "View Doctor list", path: "/ViewDoctor" },
       { icon: TableCellsIcon, text: "View Appointments list", path: "/ViewAppointments" },

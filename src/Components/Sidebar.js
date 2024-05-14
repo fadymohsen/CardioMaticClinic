@@ -8,7 +8,10 @@ import {
 import {
   PowerIcon,
   ChartBarIcon,
-  TableCellsIcon,
+  UserIcon,
+  CalendarIcon,
+  PlusCircleIcon,
+  ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
 
 import "../Styles/Navbar.css";
@@ -16,24 +19,77 @@ import { Link } from "react-router-dom";
 import { AvatarCustomStyles } from "./Avatar";
 
 export function Sidebar({ tab_index }) {
+  let role = localStorage.getItem("role");
   // Define the list of menu items
-  const menuItems = [
-    { icon: ChartBarIcon, text: "Dashboard", path: "/dashboard" },
-    { icon: TableCellsIcon, text: "Medical Records", path: "/records" },
-    { icon: TableCellsIcon, text: "Prescriptions", path: "/Prescriptions" },
-    { icon: TableCellsIcon, text: "Appointments", path: "/Appointment" },
-    { icon: TableCellsIcon, text: "bookAppointment", path: "/bookAppointment" },
+  let menuItems = [];
 
+  function handleLogout() {
+    // Perform any actions needed for logout
+    localStorage.setItem("role", "");
+  }
 
-
-
+  const menuItemsPatient = [
+    {
+      icon: ClipboardDocumentListIcon,
+      text: "Medical Records",
+      path: "/Records",
+    },
+    {
+      icon: ClipboardDocumentListIcon,
+      text: "Prescriptions",
+      path: "/Prescriptions",
+    },
+    { icon: CalendarIcon, text: "Appointments", path: "/AppointmentsPatient" },
+    {
+      icon: PlusCircleIcon,
+      text: "Book Appointment",
+      path: "/BookAppointment",
+    },
   ];
+
+  const menuItemsAdmin = [
+    { icon: ChartBarIcon, text: "Dashboard", path: "/Dashboard" },
+    { icon: UserIcon, text: "Patients List", path: "/ViewPatient" },
+    { icon: UserIcon, text: "Doctors List", path: "/ViewDoctor" },
+    { icon: CalendarIcon, text: "Appointments", path: "/ViewAppointments" },
+  ];
+
+  const menuItemsDoctor = [
+    { icon: UserIcon, text: "Patients List", path: "/ViewPatient" },
+    {
+      icon: ClipboardDocumentListIcon,
+      text: "Medical Records",
+      path: "/records",
+    },
+    {
+      icon: ClipboardDocumentListIcon,
+      text: "Prescriptions",
+      path: "/Prescriptions",
+    },
+    { icon: CalendarIcon, text: "Appointments", path: "/Appointment" },
+  ];
+
+  switch (role) {
+    case "admin":
+      menuItems = menuItemsAdmin;
+      break;
+    case "patient":
+      menuItems = menuItemsPatient;
+      break;
+    case "doctor":
+      menuItems = menuItemsDoctor;
+      break;
+    default:
+      break;
+  }
 
   return (
     <Card className="h-screen  w-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 sticky top-0 ">
       <div className="mb-2 p-4">
-        <Typography variant="h1" className="text-primary text-center">
-          Pulse
+        <Typography variant="h1">
+          <Link to={"/"} className="text-primary text-center">
+            Pulse
+          </Link>
         </Typography>
       </div>
       <div className="flex justify-center mb-12 gap-4">
@@ -60,7 +116,7 @@ export function Sidebar({ tab_index }) {
           </Link>
         ))}
         <hr />
-        <Link to={"/"} key={100}>
+        <Link to="/" onClick={handleLogout}>
           <ListItem className="flex gap-3 bg-white">
             <ListItemPrefix>
               <PowerIcon className="h-6 w-6" />

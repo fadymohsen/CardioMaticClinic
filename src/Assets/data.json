@@ -1,19 +1,19 @@
 {
   "users": [
     {
-      "email": "mohamed@gmail.com",
+      "email": "patient@gmail.com",
       "password": "123",
       "role": "patient"
     },
     {
-      "email": "fady@gmail.com",
+      "email": "doctor@gmail.com",
       "password": "123",
       "role": "doctor"
     },
     {
-      "email": "sondos@gmail.com",
+      "email": "admin@gmail.com",
       "password": "123",
-      "role": "doctor"
+      "role": "admin"
     }
   ]
 }

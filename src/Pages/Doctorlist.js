@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar } from "../Components/sidebaradmin";
+import { Sidebar } from "../Components/Sidebar";
 import {Doctors} from '../Components/ViewDoctorList';
 
 

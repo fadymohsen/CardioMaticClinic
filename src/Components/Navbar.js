@@ -13,8 +13,12 @@ function Navbar() {
     setNav(!nav);
   };
 
-  const handleBookAppointmentClick = () => {
-    navigate("/login");
+  const handleButton = (role) => {
+    if (role !== "") {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -60,9 +64,11 @@ function Navbar() {
           <button
             className="text-appointment-btn"
             type="button"
-            onClick={handleBookAppointmentClick}
+            onClick={() => handleButton(localStorage.getItem("role"))}
           >
-            Log in | Register
+            {localStorage.getItem("role") === ""
+              ? "Log in | Register"
+              : "Dashboard"}
           </button>
         </li>
       </ul>

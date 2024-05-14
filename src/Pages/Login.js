@@ -30,6 +30,8 @@ export default function Login() {
 
       if (user) {
         console.log("Login successful!");
+        localStorage.setItem("role", user.role);
+
         // Redirect to /home
         navigate("/dashboard"); // Use navigate directly without .push
       } else {

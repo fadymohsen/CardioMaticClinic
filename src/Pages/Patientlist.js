@@ -1,7 +1,6 @@
 import React from "react";
-import { Sidebar } from "../Components/sidebaradmin";
+import { Sidebar } from "../Components/Sidebar";
 import { PatientList } from "../Components/ViewPatientList";
-import { MembersTable } from "../Components/Table";
 
 export default function PatientListPage() {
   return (
@@ -18,7 +17,7 @@ export default function PatientListPage() {
             </p>
           </div>
           <div>
-            <MembersTable />
+            <PatientList />
           </div>
         </section>
       </div>

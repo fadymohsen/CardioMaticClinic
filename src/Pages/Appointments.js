@@ -1,12 +1,12 @@
 import React from "react";
 import { Sidebar } from "../Components/Sidebar";
-import { Appointments } from '../Components/AppointmentPatient';
+import { Appointments } from "../Components/AppointmentPatient";
 
-export default function Appointmentspage() {
+export default function AppointmentsPagePatient() {
   return (
     <>
       <div className="flex">
-        <Sidebar tab_index={3} /> 
+        <Sidebar tab_index={3} />
         <section className="ml-12 mr-8 container mx-auto my-8">
           <div className="mb-8">
             <div className="flex items-center gap-x-3">

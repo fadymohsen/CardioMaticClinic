@@ -18,10 +18,10 @@ import {
   export function Sidebar({ tab_index }) {
     // Define the list of menu items
     const menuItems = [
-      { icon: ChartBarIcon, text: "Dashboard", path: "/dashboard" },
-      { icon: TableCellsIcon, text: "Patient list", path: "/records" },
-      { icon: TableCellsIcon, text: "Doctor list", path: "/Prescriptions" },
-      { icon: TableCellsIcon, text: "Appointments", path: "/Appointment" },
+      { icon: ChartBarIcon, text: "Dashboard", path: "/dashboarda" },
+      { icon: TableCellsIcon, text: "View Patient list", path: "/ViewPatient" },
+      { icon: TableCellsIcon, text: "View Doctor list", path: "/ViewDoctor" },
+      { icon: TableCellsIcon, text: "View Appointments list", path: "/ViewAppointments" },
   
   
   

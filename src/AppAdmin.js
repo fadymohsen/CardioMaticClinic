@@ -23,7 +23,7 @@ function AppAdmin() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="dashboardAdmin" element={<Dashboard />}></Route>
+          <Route path="DashboardAdmin" element={<Dashboard />}></Route>
           <Route path="ViewPatient" element={<PatientListPage />}></Route>
           <Route path="ViewDoctor" element={<DoctorsListPage/>}></Route>
           <Route path="ViewAppointments" element={<AppointmentsListPage/>}></Route>

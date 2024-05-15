@@ -227,11 +227,13 @@ export function PatientList() {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Tooltip content="Edit User">
-                      <IconButton variant="text">
-                        <PencilIcon className="h-4 w-4" />
-                      </IconButton>
-                    </Tooltip>
+                    <Link to={"/EditPatient"}>
+                      <Tooltip content="Edit User">
+                        <IconButton variant="text">
+                          <PencilIcon className="h-4 w-4" />
+                        </IconButton>
+                      </Tooltip>
+                    </Link>
                   </td>
                 </tr>
               );

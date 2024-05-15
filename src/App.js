@@ -14,6 +14,7 @@ import DoctorsListPage from "./Pages/Doctorlist";
 import PatientListPage from "./Pages/Patientlist";
 import AppointmentsListPage from "./Pages/Appointmentlist";
 import AddPatient from "./Pages/Addpatient";
+import EditPatient from "./Pages/EditPatient";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="ViewPatient" element={<PatientListPage />}></Route>
           <Route path="ViewDoctor" element={<DoctorsListPage />}></Route>
           <Route path="AddPatient" element={<AddPatient />}></Route>
+          <Route path="EditPatient" element={<EditPatient />}></Route>
           <Route
             path="ViewAppointments"
             element={<AppointmentsListPage />}

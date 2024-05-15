@@ -12,10 +12,19 @@ function Hero() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const role = localStorage.getItem("role");
 
   const handleBookAppointmentClick = () => {
-    navigate("/login");
+    if (role === "patient") {
+      navigate("/BookAppointment");
+    }
   };
+
+  let isPatient = false;
+
+  if (role === "patient") {
+    isPatient = true;
+  }
 
   useEffect(() => {
     const onPageScroll = () => {
@@ -40,13 +49,16 @@ function Hero() {
           <h2 className="text-title">
             CardioMatic: Where Every Beat Matters!{" "}
           </h2>
-          <button
-            className="text-appointment-btn"
-            type="button"
-            onClick={handleBookAppointmentClick}
-          >
-            <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
-          </button>
+          {isPatient && (
+            <button
+              className="text-appointment-btn"
+              type="button"
+              onClick={handleBookAppointmentClick}
+            >
+              <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
+            </button>
+          )}
+
           <div className="text-stats">
             <div className="text-stats-container">
               <p>100</p>

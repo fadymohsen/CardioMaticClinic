@@ -12,8 +12,18 @@ function BookAppointment() {
   const navigate = useNavigate();
 
   const handleBookAppointmentClick = () => {
-    navigate("/login");
+    if (role === "patient") {
+      navigate("/BookAppointment");
+    }
   };
+
+  const role = localStorage.getItem("role");
+
+  let isPatient = false;
+
+  if (role === "patient") {
+    isPatient = true;
+  }
 
   return (
     <div className="ba-section" id="book_appoint">
@@ -53,13 +63,15 @@ function BookAppointment() {
           Detailed Reports
         </p>
 
-        <button
-          className="text-appointment-btn"
-          type="button"
-          onClick={handleBookAppointmentClick}
-        >
-          <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
-        </button>
+        {isPatient && (
+          <button
+            className="text-appointment-btn"
+            type="button"
+            onClick={handleBookAppointmentClick}
+          >
+            <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
+          </button>
+        )}
       </div>
     </div>
   );

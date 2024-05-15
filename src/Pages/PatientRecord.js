@@ -38,6 +38,10 @@ export default function PatientRecord() {
     { id: 3, visitDate: "2024-05-17", diagnoses: "Stomach Ulcer" },
   ]);
 
+  // Pagination state
+  const [pageIndex, setPageIndex] = useState(0);
+  const pageSize = 5;
+
   const handleBookAppointmentClick = () => {
     navigate("/appointment");
   };
@@ -58,6 +62,21 @@ export default function PatientRecord() {
   const filteredTestsAndTreatments = testsAndTreatments.filter(item =>
     item.diagnoses.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Functions for pagination
+  const totalPages = Math.ceil(filteredVisits.length / pageSize);
+
+  const handlePreviousPage = () => {
+    setPageIndex(prevIndex => Math.max(prevIndex - 1, 0));
+  };
+
+  const handleNextPage = () => {
+    setPageIndex(prevIndex => Math.min(prevIndex + 1, totalPages - 1));
+  };
+
+  const handleAddMemberClick = () => {
+    window.open("/add-member", "Add Member", "width=600,height=400");
+  };
 
   return (
     <>
@@ -132,7 +151,7 @@ export default function PatientRecord() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredVisits.map((visit) => (
+              {filteredVisits.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize).map((visit) => (
                 <tr key={visit.id}>
                   <td className="px-4 py-2 whitespace-nowrap">{visit.doctor}</td>
                   <td className="px-4 py-2 whitespace-nowrap">{visit.date}</td>
@@ -143,8 +162,15 @@ export default function PatientRecord() {
               ))}
             </tbody>
           </table>
+          <div className="flex justify-between mt-4">
+            <button className="text-gray-500" onClick={handlePreviousPage} disabled={pageIndex === 0}>Previous</button>
+            <button className="text-gray-500" onClick={handleNextPage} disabled={pageIndex === totalPages - 1}>Next</button>
+          </div>
           <button className="text-appointment-btn" type="button" onClick={handleBookAppointmentClick}>
             <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
+          </button>
+          <button className="text-appointment-btn" type="button" onClick={handleAddMemberClick}>
+            Add Member
           </button>
         </div>
 

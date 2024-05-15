@@ -1,10 +1,14 @@
-import { useState } from "react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-export default function AddPatient() {
-  const [name, setName] = useState("");
+export default function AppointmentForm() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const [fullName, setFullName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
@@ -21,238 +25,444 @@ export default function AddPatient() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleBookAppointmentClick = () => {
-    navigate("/home");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form inputs
+    const errors = {};
+    if (!fullName.trim()) {
+      errors.fullName = "Full name is required";
+    }
+
+    if (!email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = "Invalid email format";
+    }
+
+    // Add validation for other fields
+    // Age validation
+    if (!age.trim()) {
+      errors.age = "Age is required";
+    }
+
+    // Gender validation
+    if (!gender.trim()) {
+      errors.gender = "Gender is required";
+    }
+
+    // Mobile validation
+    if (!mobile.trim()) {
+      errors.mobile = "Mobile is required";
+    } else if (isNaN(mobile.trim())) {
+      errors.mobile = "Mobile must be a number";
+    }
+
+    // Visit date validation
+    if (!visitDate.trim()) {
+      errors.visitDate = "Visit date is required";
+    }
+
+    // Diagnosis validation
+    if (!diagnosis.trim()) {
+      errors.diagnosis = "Diagnosis is required";
+    }
+
+    // Medicine validation
+    if (!medicine.trim()) {
+      errors.medicine = "Medicine is required";
+    }
+
+    // Dosage validation
+    if (!dosage.trim()) {
+      errors.dosage = "Dosage is required";
+    }
+
+    // Frequency validation
+    if (!frequency.trim()) {
+      errors.frequency = "Frequency is required";
+    }
+
+    // Tests validation
+    if (!tests.trim()) {
+      errors.tests = "Tests are required";
+    }
+
+    // Treatment validation
+    if (!treatment.trim()) {
+      errors.treatment = "Treatment is required";
+    }
+
+    // Medical history validation
+    if (!medicalHistory.trim()) {
+      errors.medicalHistory = "Medical history is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    // Reset form fields and errors after successful submission
+    setFullName("");
+    setAge("");
+    setGender("");
+    setEmail("");
+    setMobile("");
+    setVisitDate("");
+    setDiagnosis("");
+    setMedicine("");
+    setDosage("");
+    setFrequency("");
+    setTests("");
+    setTreatment("");
+    setMedicalHistory("");
+    setError("");
+    setLoading(false);
+    setFormErrors({});
+
+    toast.success("Appointment Scheduled!", {
+      position: toast.POSITION.TOP_CENTER,
+      onOpen: () => setIsSubmitted(true),
+      onClose: () => setIsSubmitted(false),
+    });
+    navigate("/ViewPatient");
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-
-  //   try {
-  //     // Your submit logic here
-  //   } catch (error) {
-  //     console.error("Error submitting data:", error);
-  //     setError("An error occurred while processing your request");
-  //   }
-
-  //   setLoading(false);
-  // };
-
   return (
-    <>
-      <Navbar></Navbar>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-lg shadow-md rounded-md p-6">
-          <h1 className="flex justify-center text-5xl gap-2 text-primary">
-            Add Patient
-          </h1>
-
-          <form
-            className="mt-6 space-y-6"
-            onSubmit={handleBookAppointmentClick}
-          >
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  placeholder="Name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="Email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="age"
-                  name="age"
-                  type="date"
-                  autoComplete="age"
-                  placeholder="Age"
-                  required
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <select
-                  id="gender"
-                  name="gender"
-                  required
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-
-              <div>
-                <input
-                  id="mobile"
-                  name="mobile"
-                  type="tel"
-                  autoComplete="tel"
-                  placeholder="Mobile"
-                  required
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="visitDate"
-                  name="visitDate"
-                  type="date"
-                  placeholder="Visit Date"
-                  required
-                  value={visitDate}
-                  onChange={(e) => setVisitDate(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="diagnosis"
-                  name="diagnosis"
-                  type="text"
-                  autoComplete="diagnosis"
-                  placeholder="Diagnosis"
-                  required
-                  value={diagnosis}
-                  onChange={(e) => setDiagnosis(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="medicine"
-                  name="medicine"
-                  type="text"
-                  autoComplete="medicine"
-                  placeholder="Medicine"
-                  required
-                  value={medicine}
-                  onChange={(e) => setMedicine(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="dosage"
-                  name="dosage"
-                  type="text"
-                  autoComplete="dosage"
-                  placeholder="Dosage"
-                  required
-                  value={dosage}
-                  onChange={(e) => setDosage(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="frequency"
-                  name="frequency"
-                  type="text"
-                  autoComplete="frequency"
-                  placeholder="Frequency per day"
-                  required
-                  value={frequency}
-                  onChange={(e) => setFrequency(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="tests"
-                  name="tests"
-                  type="text"
-                  autoComplete="tests"
-                  placeholder="Tests"
-                  required
-                  value={tests}
-                  onChange={(e) => setTests(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="treatment"
-                  name="treatment"
-                  type="text"
-                  autoComplete="treatment"
-                  placeholder="Treatment"
-                  required
-                  value={treatment}
-                  onChange={(e) => setTreatment(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-
-              <div>
-                <input
-                  id="medicalHistory"
-                  name="medicalHistory"
-                  type="text"
-                  autoComplete="medicalHistory"
-                  placeholder="Medical History"
-                  required
-                  value={medicalHistory}
-                  onChange={(e) => setMedicalHistory(e.target.value)}
-                  className="block w-full rounded-md outline-none border-0 py-2 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            {error && <div className="text-red-600 text-sm">{error}</div>}
-
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className={`flex w-full justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
-                  loading && "opacity-50 cursor-not-allowed"
+    <div className="appointment-form-section flex flex-col mt-20 items-center ">
+      <div className="form-container w-5/12 p-8 border border-gray-300 rounded-lg">
+        <h2 className="text-xl font-semibold mb-4">Add Patient</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid md:grid-cols-2 md:gap-6">
+            {/* Full Name */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="fullName"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                id="fullName"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.fullName ? "border-red-500" : ""
                 }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="fullName"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                {loading ? "Adding Patient..." : "Add Patient"}
-              </button>
+                Full Name
+              </label>
+              {formErrors.fullName && (
+                <p className="error-message">{formErrors.fullName}</p>
+              )}
             </div>
-          </form>
-        </div>
+            {/* Age */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="date"
+                name="age"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                id="age"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.age ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="age"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Age
+              </label>
+              {formErrors.age && (
+                <p className="error-message">{formErrors.age}</p>
+              )}
+            </div>
+            {/* Gender */}
+            <div className="relative z-0 w-full mb-5 group">
+              <select
+                id="gender"
+                name="gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className={`bg-transparent border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 block w-full py-2.5 px-0 text-sm text-gray-900 dark:text-white dark:bg-transparent ${
+                  formErrors.gender ? "border-red-500" : ""
+                }`}
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <label
+                htmlFor="gender"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Gender
+              </label>
+              {formErrors.gender && (
+                <p className="error-message">{formErrors.gender}</p>
+              )}
+            </div>
+            {/* Email */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                id="email"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.email ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="email"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Email Address
+              </label>
+              {formErrors.email && (
+                <p className="error-message">{formErrors.email}</p>
+              )}
+            </div>
+            {/* Mobile */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="tel"
+                name="mobile"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                id="mobile"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.mobile ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="mobile"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Mobile
+              </label>
+              {formErrors.mobile && (
+                <p className="error-message">{formErrors.mobile}</p>
+              )}
+            </div>
+            {/* Visit Date */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="date"
+                name="visitDate"
+                value={visitDate}
+                onChange={(e) => setVisitDate(e.target.value)}
+                id="visitDate"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.visitDate ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="visitDate"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Visit Date
+              </label>
+              {formErrors.visitDate && (
+                <p className="error-message">{formErrors.visitDate}</p>
+              )}
+            </div>
+            {/* Diagnosis */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="diagnosis"
+                value={diagnosis}
+                onChange={(e) => setDiagnosis(e.target.value)}
+                id="diagnosis"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.diagnosis ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="diagnosis"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Diagnosis
+              </label>
+              {formErrors.diagnosis && (
+                <p className="error-message">{formErrors.diagnosis}</p>
+              )}
+            </div>
+            {/* Medicine */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="medicine"
+                value={medicine}
+                onChange={(e) => setMedicine(e.target.value)}
+                id="medicine"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.medicine ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="medicine"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Medicine
+              </label>
+              {formErrors.medicine && (
+                <p className="error-message">{formErrors.medicine}</p>
+              )}
+            </div>
+            {/* Dosage */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="dosage"
+                value={dosage}
+                onChange={(e) => setDosage(e.target.value)}
+                id="dosage"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.dosage ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="dosage"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Dosage
+              </label>
+              {formErrors.dosage && (
+                <p className="error-message">{formErrors.dosage}</p>
+              )}
+            </div>
+            {/* Frequency */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="frequency"
+                value={frequency}
+                onChange={(e) => setFrequency(e.target.value)}
+                id="frequency"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.frequency ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="frequency"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Frequency
+              </label>
+              {formErrors.frequency && (
+                <p className="error-message">{formErrors.frequency}</p>
+              )}
+            </div>
+            {/* Tests */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="tests"
+                value={tests}
+                onChange={(e) => setTests(e.target.value)}
+                id="tests"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.tests ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="tests"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Tests
+              </label>
+              {formErrors.tests && (
+                <p className="error-message">{formErrors.tests}</p>
+              )}
+            </div>
+            {/* Treatment */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="treatment"
+                value={treatment}
+                onChange={(e) => setTreatment(e.target.value)}
+                id="treatment"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.treatment ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="treatment"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Treatment
+              </label>
+              {formErrors.treatment && (
+                <p className="error-message">{formErrors.treatment}</p>
+              )}
+            </div>
+            {/* Medical History */}
+            <div className="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="medicalHistory"
+                value={medicalHistory}
+                onChange={(e) => setMedicalHistory(e.target.value)}
+                id="medicalHistory"
+                className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
+                  formErrors.medicalHistory ? "border-red-500" : ""
+                }`}
+                placeholder=" "
+                required
+              />
+              <label
+                htmlFor="medicalHistory"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >
+                Medical History
+              </label>
+              {formErrors.medicalHistory && (
+                <p className="error-message">{formErrors.medicalHistory}</p>
+              )}
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Submit
+          </button>
+        </form>
       </div>
-      <Footer></Footer>
-    </>
+
+      <ToastContainer autoClose={5000} limit={1} closeButton={false} />
+    </div>
   );
 }

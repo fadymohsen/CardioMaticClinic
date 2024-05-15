@@ -13,6 +13,7 @@ import BookAppointment from "./Pages/BookAppointment";
 import DoctorsListPage from "./Pages/Doctorlist";
 import PatientListPage from "./Pages/Patientlist";
 import AppointmentsListPage from "./Pages/Appointmentlist";
+import AddPatient from "./Pages/Addpatient";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="BookAppointment" element={<BookAppointment />}></Route>
           <Route path="ViewPatient" element={<PatientListPage />}></Route>
           <Route path="ViewDoctor" element={<DoctorsListPage />}></Route>
+          <Route path="AddPatient" element={<AddPatient />}></Route>
           <Route
             path="ViewAppointments"
             element={<AppointmentsListPage />}

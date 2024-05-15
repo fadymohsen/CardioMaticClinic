@@ -15,7 +15,19 @@ function Navbar() {
 
   const handleButton = (role) => {
     if (role !== "") {
-      navigate("/dashboard");
+      switch (role) {
+        case "admin":
+          navigate("/Statistics");
+          break;
+        case "patient":
+          navigate("/Records");
+          break;
+        case "doctor":
+          navigate("/ViewPatient");
+          break;
+        default:
+          break;
+      }
     } else {
       navigate("/login");
     }

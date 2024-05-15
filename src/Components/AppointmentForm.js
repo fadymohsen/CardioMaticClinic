@@ -53,8 +53,6 @@ function AppointmentForm() {
 
   return (
     <div className="appointment-form-section">
-      <Navbar></Navbar>
-
       <div className="flex justify-center align-middle">
         <div className="form-container w-5/12 ">
           <h2 className="form-title">
@@ -98,7 +96,6 @@ function AppointmentForm() {
                 required
               >
                 <option value="default">Select</option>
-                
               </select>
               {formErrors.selectedSlot && (
                 <p className="error-message">{formErrors.selectedSlot}</p>

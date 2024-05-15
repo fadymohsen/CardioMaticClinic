@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import NotFound from "./Pages/NotFound";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/Signup";
-import Dashboard from "./Pages/Dashboard";
+import Statistics from "./Pages/Statistics";
 import MedicalRecords from "./Pages/MedicalRecords";
 import PrescriptionsPage from "./Pages/Prescriptions";
 import AppointmentsPagePatient from "./Pages/Appointments";
@@ -22,7 +22,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="Login" element={<Login />} />
           <Route path="Signup" element={<SignUp />} />
-          <Route path="Dashboard" element={<Dashboard />}></Route>
+          <Route path="Statistics" element={<Statistics />}></Route>
           <Route path="Records" element={<MedicalRecords />}></Route>
           <Route path="Prescriptions" element={<PrescriptionsPage />}></Route>
           <Route

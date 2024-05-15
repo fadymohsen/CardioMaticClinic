@@ -48,7 +48,7 @@ export function Sidebar({ tab_index }) {
   ];
 
   const menuItemsAdmin = [
-    { icon: ChartBarIcon, text: "Dashboard", path: "/Dashboard" },
+    { icon: ChartBarIcon, text: "Statistics", path: "/Statistics" },
     { icon: UserIcon, text: "Patients List", path: "/ViewPatient" },
     { icon: UserIcon, text: "Doctors List", path: "/ViewDoctor" },
     { icon: CalendarIcon, text: "Appointments", path: "/ViewAppointments" },
@@ -66,7 +66,7 @@ export function Sidebar({ tab_index }) {
       text: "Prescriptions",
       path: "/Prescriptions",
     },
-    { icon: CalendarIcon, text: "Appointments", path: "/Appointment" },
+    { icon: CalendarIcon, text: "Appointments", path: "/ViewAppointments" },
   ];
 
   switch (role) {
@@ -85,22 +85,14 @@ export function Sidebar({ tab_index }) {
 
   return (
     <Card className="h-screen  w-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 sticky top-0 ">
-      <div className="mb-2 p-4">
+      <div className="mb-2 p-4 text-center">
         <Typography variant="h1">
           <Link to={"/"} className="text-primary text-center">
             Pulse
           </Link>
         </Typography>
       </div>
-      <div className="flex justify-center mb-12 gap-4">
-        <AvatarCustomStyles></AvatarCustomStyles>
-        <div className="flex flex-col">
-          <span className="mx-2 font-medium ">Dr.Mohamed Mosilhy</span>
-          <span className="mx-2 text-xs ">Heart Failure Specialist</span>
-        </div>
-      </div>
-
-      <List className="flex flex-col gap-5 h-4/5 ml-4">
+      <List className="flex flex-col gap-5 h-4/5 ">
         {menuItems.map((item, index) => (
           <Link to={item.path} key={index}>
             <ListItem
@@ -125,6 +117,13 @@ export function Sidebar({ tab_index }) {
           </ListItem>
         </Link>
       </List>
+      <div className="flex justify-center mb-8 gap-4">
+        <AvatarCustomStyles></AvatarCustomStyles>
+        <div className="flex flex-col">
+          <span className="mx-2 font-medium ">Dr.Mohamed Mosilhy</span>
+          <span className="mx-2 text-xs ">Heart Failure Specialist</span>
+        </div>
+      </div>
     </Card>
   );
 }

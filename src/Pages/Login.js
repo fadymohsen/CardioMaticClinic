@@ -32,8 +32,19 @@ export default function Login() {
         console.log("Login successful!");
         localStorage.setItem("role", user.role);
 
-        // Redirect to /home
-        navigate("/dashboard"); // Use navigate directly without .push
+        switch (user.role) {
+          case "admin":
+            navigate("/Statistics");
+            break;
+          case "patient":
+            navigate("/Records");
+            break;
+          case "doctor":
+            navigate("/ViewPatient");
+            break;
+          default:
+            break;
+        }
       } else {
         setError("Invalid email, password");
       }

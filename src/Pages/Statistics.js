@@ -2,20 +2,21 @@ import { Sidebar } from "../Components/Sidebar";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { LineChart } from "@mui/x-charts/LineChart";
-export default function Dashboard() {
+export default function Statistics() {
   const chartsParams = {
     margin: { bottom: 20, left: 25, right: 5 },
     height: 300,
   };
+  const role = localStorage.getItem("role");
   return (
     <div className="flex">
-      <Sidebar tab_index={0} />
+      {role === "admin" && <Sidebar tab_index={0} />}
 
       <section className=" ml-12 mr-8 container mx-auto my-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-x-3">
-              <h2 className="text-lg font-medium ">Dashboard</h2>
+              <h2 className="text-lg font-medium ">Statistics</h2>
             </div>
             <p className="mt-1 text-sm">
               Get an overview of everything happening in your lab.

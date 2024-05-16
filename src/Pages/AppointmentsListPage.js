@@ -1,15 +1,16 @@
 import React from "react";
-import AppointmentForm from "../Components/AppointmentForm";
 import { Sidebar } from "../Components/Sidebar";
+import { Appointments } from "../Components/Appointments";
 
-export default function BookAppointmentDashboard() {
+export default function AppointmentsListPage() {
   return (
     <>
       <div className="flex">
         <Sidebar tab_index={3} />
         <section className="ml-12 mr-8 container mx-auto my-8">
+          <div className="mb-8"></div>
           <div>
-            <AppointmentForm />
+            <Appointments />
           </div>
         </section>
       </div>

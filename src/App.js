@@ -8,10 +8,10 @@ import SignUp from "./Pages/Signup";
 import Statistics from "./Pages/Statistics";
 import MedicalRecords from "./Pages/MedicalRecords";
 import PrescriptionsPage from "./Pages/Prescriptions";
-import AppointmentsPagePatient from "./Pages/Appointments";
+import AppointmentsPagePatient from "./Pages/AppointmentsPagePatient";
 import DoctorsListPage from "./Pages/Doctorlist";
 import PatientListPage from "./Pages/Patientlist";
-import AppointmentsListPage from "./Pages/Appointmentlist";
+import AppointmentsListPage from "./Pages/AppointmentsListPage";
 import AddPatient from "./Pages/Addpatient";
 import AddDoctor from "./Pages/AddDoctor";
 

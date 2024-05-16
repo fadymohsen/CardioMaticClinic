@@ -14,7 +14,13 @@ import DoctorsListPage from "./Pages/Doctorlist";
 import PatientListPage from "./Pages/Patientlist";
 import AppointmentsListPage from "./Pages/Appointmentlist";
 import AddPatient from "./Pages/Addpatient";
+import AddDoctor from "./Pages/AddDoctor";
+
 import EditPatient from "./Pages/EditPatient";
+import EditDoctor from "./Pages/EditDoctor";
+import EditPrescriptions from "./Pages/EditPrescriptions";
+
+import EditMedicalRecord from "./Pages/EditMedicalRecord";
 
 function App() {
   return (
@@ -35,7 +41,15 @@ function App() {
           <Route path="ViewPatient" element={<PatientListPage />}></Route>
           <Route path="ViewDoctor" element={<DoctorsListPage />}></Route>
           <Route path="AddPatient" element={<AddPatient />}></Route>
+          <Route path="AddDoctor" element={<AddDoctor />}></Route>
+
+
           <Route path="EditPatient" element={<EditPatient />}></Route>
+          <Route path="EditDoctor" element={<EditDoctor />}></Route>
+          <Route path="EditPrescriptions" element={<EditPrescriptions />}></Route>
+          <Route path="EditMedicalRecord" element={<EditMedicalRecord />}></Route>
+
+
           <Route
             path="ViewAppointments"
             element={<AppointmentsListPage />}

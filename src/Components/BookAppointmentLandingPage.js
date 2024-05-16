@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "../Styles/BookAppointment.css";
 import DoctorImage from "../Assets/doctor-book-appointment.png"; // Import the image
 
-function BookAppointment() {
+function BookAppointmentLandingPage() {
   const navigate = useNavigate();
 
   const handleBookAppointmentClick = () => {
@@ -77,4 +77,4 @@ function BookAppointment() {
   );
 }
 
-export default BookAppointment;
+export default BookAppointmentLandingPage;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "../Components/Sidebar";
-import { Appointments } from "../Components/AppointmentPatient";
+import { Appointments } from "../Components/Appointments";
 
 export default function AppointmentsPagePatient() {
   return (

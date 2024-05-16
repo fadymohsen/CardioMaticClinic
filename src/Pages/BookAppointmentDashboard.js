@@ -2,7 +2,7 @@ import React from "react";
 import AppointmentForm from "../Components/AppointmentForm";
 import { Sidebar } from "../Components/Sidebar";
 
-export default function BookAppointment() {
+export default function BookAppointmentDashboard() {
   return (
     <>
       <div className="flex">

@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar";
 import Hero from "../Components/Hero";
 import About from "../Components/About";
-import BookAppointment from "../Components/BookAppointment";
+import BookAppointmentLandingPage from "../Components/BookAppointmentLandingPage";
 import Reviews from "../Components/Reviews";
 import Doctors from "../Components/Doctors";
 import Footer from "../Components/Footer";
@@ -13,7 +13,7 @@ function Home() {
       <Navbar />
       <Hero />
       <About />
-      <BookAppointment />
+      <BookAppointmentLandingPage />
       <Reviews />
       <Doctors />
       <Footer />

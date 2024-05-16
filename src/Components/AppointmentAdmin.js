@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   Typography,
   CardBody,
+  Input,
 } from "@material-tailwind/react";
-import { ChevronUpDownIcon } from "@heroicons/react/24/outline";
+import { ChevronUpDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Chip } from "@material-tailwind/react";
 
 const TABLE_HEAD = ["Date", "Time", "Doctor", "Patient", "Status"];
@@ -30,8 +31,34 @@ const TABLE_ROWS = [
 ];
 
 export function Appointments() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredRows = TABLE_ROWS.filter((row) =>
+    Object.values(row).some((value) =>
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  );
+
   return (
     <Card className="h-full w-full">
+      <div className="mb-8 flex items-center justify-between gap-8">
+        <div>
+          <Typography variant="h5" color="blue-gray">
+            Appointments List
+          </Typography>
+          <Typography color="gray" className="mt-1 font-normal">
+            See information about all Appointments
+          </Typography>
+        </div>
+        <div className="w-full md:w-72">
+          <Input
+            label="Search"
+            icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
       <CardBody className="overflow-scroll px-0">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
@@ -56,8 +83,8 @@ export function Appointments() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(({ date, hour, minute, doctor, patient, status }, index) => {
-              const isLast = index === TABLE_ROWS.length - 1;
+            {filteredRows.map(({ date, hour, minute, doctor, patient, status }, index) => {
+              const isLast = index === filteredRows.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";

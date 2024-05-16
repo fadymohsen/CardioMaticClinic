@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import {
@@ -13,40 +14,68 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Patient", "Age", "Gender", "Email", "Phone Number", ""];
+const TABLE_HEAD = ["Doctor", "Age", "Gender", "Email", "Phone Number", ""];
 
 const TABLE_ROWS = [
   {
     name: "John Michael",
-    age: 29,
+    age: "29",
     gender: "Male",
     email: "john@creative-tim.com",
     phone: "123-456-7890",
   },
   {
     name: "Alexa Liras",
-    age: 34,
+    age: "34",
     gender: "Female",
     email: "alexa@creative-tim.com",
     phone: "987-654-3210",
   },
   {
     name: "Laurent Perrier",
-    age: 41,
+    age: "41",
     gender: "Male",
     email: "laurent@creative-tim.com",
     phone: "456-123-7890",
   },
   {
     name: "Michael Levi",
-    age: 36,
+    age: "36",
     gender: "Male",
     email: "michael@creative-tim.com",
     phone: "321-654-9870",
   },
   {
     name: "Richard Gran",
-    age: 28,
+    age: "28",
+    gender: "Male",
+    email: "richard@creative-tim.com",
+    phone: "654-321-0987",
+  },
+  {
+    name: "Richard Gran",
+    age: "28",
+    gender: "Male",
+    email: "richard@creative-tim.com",
+    phone: "654-321-0987",
+  },
+  {
+    name: "Richard Gran",
+    age: "28",
+    gender: "Male",
+    email: "richard@creative-tim.com",
+    phone: "654-321-0987",
+  },
+  {
+    name: "Richard Gran",
+    age: "28",
+    gender: "Male",
+    email: "richard@creative-tim.com",
+    phone: "654-321-0987",
+  },
+  {
+    name: "Richard Gran",
+    age: "28",
     gender: "Male",
     email: "richard@creative-tim.com",
     phone: "654-321-0987",
@@ -55,10 +84,35 @@ const TABLE_ROWS = [
 
 export function Doctors() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage] = useState(6); // Change this value to adjust the number of rows per page
 
   const filteredRows = TABLE_ROWS.filter((row) =>
-    row.name.toLowerCase().includes(searchQuery.toLowerCase())
+    Object.values(row).some((value) =>
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    )
   );
+
+  // Calculate the indexes of the first and last row on the current page
+  let indexOfLastRow = currentPage * rowsPerPage;
+  let indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  let currentRows = filteredRows.slice(indexOfFirstRow, indexOfLastRow);
+
+  // Handle changing the page
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    indexOfLastRow = currentPage * rowsPerPage;
+    indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    currentRows = filteredRows.slice(indexOfFirstRow, indexOfLastRow);
+    // Select the tbody element
+    const tbody = document.querySelector(".tbody");
+
+    // Remove all child elements if tbody exists
+    if (tbody) {
+      // Set the innerHTML of tbody to an empty string to remove all child nodes
+      tbody.innerHTML = "";
+    }
+  };
 
   return (
     <Card className="h-full w-full">
@@ -66,19 +120,18 @@ export function Doctors() {
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5" color="blue-gray">
-              Doctors list
-            </Typography>
+            DoctorsList
+                        </Typography>
             <Typography color="gray" className="mt-1 font-normal">
               See information about all Doctors
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button variant="outlined" size="sm">
-              view all
-            </Button>
-            <Button className="flex items-center gap-3" size="sm">
-              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Doctor
-            </Button>
+            <Link to="/AddDoctor">
+              <Button className="flex items-center gap-3 " size="sm">
+                <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Doctor
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
@@ -113,87 +166,100 @@ export function Doctors() {
             </tr>
           </thead>
           <tbody>
-            {filteredRows.map(
-              ({ name, age, gender, email, phone }, index) => {
-                const isLast = index === filteredRows.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
+            {currentRows.map(({ name, age, gender, email, phone }, index) => {
+              const isLast = index === currentRows.length - 1;
+              const classes = isLast
+                ? "p-4"
+                : "p-4 border-b border-blue-gray-50";
 
-                return (
-                  <tr key={name}>
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                          >
-                            {name}
-                          </Typography>
-                        </div>
+              // Generate a unique key based on the index
+              const key = `${name}_${index}`;
+
+              return (
+                <tr key={key}>
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <div className="flex flex-col">
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {name}
+                        </Typography>
                       </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {age}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {gender}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {email}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {phone}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {age}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {gender}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {email}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {phone}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Link to={"/EditDoctor"}>
                       <Tooltip content="Edit User">
                         <IconButton variant="text">
                           <PencilIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <Typography variant="small" color="blue-gray" className="font-normal">
-          Page 1 of 10
+          Page {currentPage} of {Math.ceil(filteredRows.length / rowsPerPage)}
         </Typography>
         <div className="flex gap-2">
-          <Button variant="outlined" size="sm">
+          <Button
+            onClick={() => handlePageChange(currentPage - 1)}
+            variant="outlined"
+            size="sm"
+            disabled={currentPage === 1}
+          >
             Previous
           </Button>
-          <Button variant="outlined" size="sm">
+          <Button
+            onClick={() => handlePageChange(currentPage + 1)}
+            variant="outlined"
+            size="sm"
+            disabled={indexOfLastRow >= filteredRows.length}
+          >
             Next
           </Button>
         </div>

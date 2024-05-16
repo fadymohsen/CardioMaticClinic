@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+import { Card, Typography, CardBody, Input } from "@material-tailwind/react";
 import {
-  Card,
-  Typography,
-  CardBody,
-  Input,
-} from "@material-tailwind/react";
-import { ChevronUpDownIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+  ChevronUpDownIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
 import { Chip } from "@material-tailwind/react";
 
 const TABLE_HEAD = ["Date", "Time", "Doctor", "Patient", "Status"];
@@ -41,7 +39,7 @@ export function Appointments() {
 
   return (
     <Card className="h-full w-full">
-      <div className="mb-8 flex items-center justify-between gap-8">
+      <div className="mb-8 flex items-center justify-between gap-8 p-4">
         <div>
           <Typography variant="h5" color="blue-gray">
             Appointments List
@@ -83,63 +81,65 @@ export function Appointments() {
             </tr>
           </thead>
           <tbody>
-            {filteredRows.map(({ date, hour, minute, doctor, patient, status }, index) => {
-              const isLast = index === filteredRows.length - 1;
-              const classes = isLast
-                ? "p-4"
-                : "p-4 border-b border-blue-gray-50";
+            {filteredRows.map(
+              ({ date, hour, minute, doctor, patient, status }, index) => {
+                const isLast = index === filteredRows.length - 1;
+                const classes = isLast
+                  ? "p-4"
+                  : "p-4 border-b border-blue-gray-50";
 
-              return (
-                <tr key={`${date}-${hour}-${minute}-${doctor}`}>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {date}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {hour}:{minute}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {doctor}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {patient}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <div className="w-max">
-                      <Chip
-                        variant="ghost"
-                        size="sm"
-                        value={status}
-                        color={status === "Previous" ? "red" : "green"}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                return (
+                  <tr key={`${date}-${hour}-${minute}-${doctor}`}>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {date}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {hour}:{minute}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {doctor}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {patient}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <div className="w-max">
+                        <Chip
+                          variant="ghost"
+                          size="sm"
+                          value={status}
+                          color={status === "Previous" ? "red" : "green"}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </table>
       </CardBody>

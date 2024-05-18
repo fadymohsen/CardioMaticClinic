@@ -4,7 +4,7 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import cardiomaticLogo from "../Assets/mainLogo.png";
 function Navbar() {
   const [nav, setNav] = useState(false);
   const navigate = useNavigate();
@@ -35,8 +35,15 @@ function Navbar() {
 
   return (
     <div className="navbar-section">
-      <h1 className="navbar-title">
-        <Link to="#home">CardioMatic</Link>
+      <h1 className="navbar-title ">
+        <Link to="#home" className="flex justify-center items-center">
+          <img
+            src={cardiomaticLogo}
+            alt="CardioMatic Logo"
+            className="w-10 h-10 inline-block mr-2"
+          />
+          CardioMatic
+        </Link>
       </h1>
 
       {/* Desktop */}
@@ -59,11 +66,6 @@ function Navbar() {
         <li>
           <a href="#reviews" className="navbar-links">
             Reviews
-          </a>
-        </li>
-        <li>
-          <a href="#doctors" className="navbar-links">
-            Doctors
           </a>
         </li>
         <li>
@@ -110,11 +112,6 @@ function Navbar() {
           <li>
             <a onClick={openNav} href="#reviews">
               Reviews
-            </a>
-          </li>
-          <li>
-            <a onClick={openNav} href="#doctors">
-              Doctors
             </a>
           </li>
           <li>

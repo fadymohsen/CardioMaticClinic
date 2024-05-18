@@ -4,7 +4,6 @@ import Hero from "../Components/Hero";
 import About from "../Components/About";
 import BookAppointmentLandingPage from "../Components/BookAppointmentLandingPage";
 import Reviews from "../Components/Reviews";
-import Doctors from "../Components/Doctors";
 import Footer from "../Components/Footer";
 
 function Home() {
@@ -15,7 +14,6 @@ function Home() {
       <About />
       <BookAppointmentLandingPage />
       <Reviews />
-      <Doctors />
       <Footer />
     </div>
   );

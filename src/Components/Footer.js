@@ -1,12 +1,17 @@
 import React from "react";
 import "../Styles/Footer.css";
-
+import cardiomaticLogo from "../Assets/mainLogo.png";
 function Footer() {
   return (
     <div className="footer-section">
       <div className="footer-container">
         <div className="ft-info">
-          <div className="ft-info-p1">
+          <div className="ft-info-p1 flex justify-center items-center">
+            <img
+              src={cardiomaticLogo}
+              alt="CardioMatic Logo"
+              className="w-10 h-10 inline-block mr-2"
+            />
             <p className="ft-title">CardioMatic</p>
           </div>
         </div>

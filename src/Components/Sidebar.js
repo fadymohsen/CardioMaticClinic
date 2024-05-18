@@ -17,6 +17,7 @@ import {
 import "../Styles/Navbar.css";
 import { Link } from "react-router-dom";
 import { AvatarCustomStyles } from "./Avatar";
+import cardiomaticLogo from "../Assets/mainLogo.png";
 
 export function Sidebar({ tab_index }) {
   let role = localStorage.getItem("role");
@@ -86,8 +87,13 @@ export function Sidebar({ tab_index }) {
   return (
     <Card className="h-screen  w-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 sticky top-0 ">
       <div className="mb-2 p-4 text-center">
-        <Typography variant="h1">
+        <Typography variant="h2">
           <Link to={"/"} className="text-primary text-center">
+            <img
+              src={cardiomaticLogo}
+              alt="CardioMatic Logo"
+              className="w-10 h-10 inline-block mr-2"
+            />
             CardioMatic
           </Link>
         </Typography>

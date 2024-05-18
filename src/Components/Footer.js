@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-container">
         <div className="ft-info">
           <div className="ft-info-p1">
-            <p className="ft-title">Pulse</p>
+            <p className="ft-title">CardioMatic</p>
           </div>
         </div>
 

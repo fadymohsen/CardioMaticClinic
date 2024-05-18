@@ -88,7 +88,7 @@ export function Sidebar({ tab_index }) {
       <div className="mb-2 p-4 text-center">
         <Typography variant="h1">
           <Link to={"/"} className="text-primary text-center">
-            Pulse
+            CardioMatic
           </Link>
         </Typography>
       </div>

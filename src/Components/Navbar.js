@@ -36,7 +36,7 @@ function Navbar() {
   return (
     <div className="navbar-section">
       <h1 className="navbar-title">
-        <Link to="#home">Pulse</Link>
+        <Link to="#home">CardioMatic</Link>
       </h1>
 
       {/* Desktop */}

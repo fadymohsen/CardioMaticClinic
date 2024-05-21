@@ -17,7 +17,7 @@ export default function Login() {
     try {
       console.log("Submitting form...");
 
-      const response = await axios.get("http://localhost:8000/users");
+      const response = await axios.get("http://localhost:3000/users/login");
 
       if (response.status !== 200) {
         throw new Error(`HTTP error! Status: ${response.status}`);

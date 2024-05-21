@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
@@ -15,7 +15,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Name", "Age", "Gender", "Email", ""];
+const TABLE_HEAD = ["Name", "Age", "Gender", "Email", "", "Actions"];
 
 export function PatientList() {
   const [patients, setPatients] = useState([]);
@@ -48,6 +48,12 @@ export function PatientList() {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleDelete = (index) => {
+    const updatedPatients = patients.filter((_, i) => i !== index);
+    setPatients(updatedPatients);
+    setCurrentPage(1); // Reset to the first page if rows are deleted
   };
 
   return (
@@ -160,6 +166,16 @@ export function PatientList() {
                         </IconButton>
                       </Tooltip>
                     </Link>
+                  </td>
+                  <td className={classes}>
+                    <Tooltip content="Delete User">
+                      <IconButton
+                        variant="text"
+                        onClick={() => handleDelete(index)}
+                      >
+                        <TrashIcon className="h-4 w-4" />
+                      </IconButton>
+                    </Tooltip>
                   </td>
                 </tr>
               );

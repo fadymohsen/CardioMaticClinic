@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -9,50 +9,36 @@ import {
   Typography,
   Button,
   CardBody,
-  Tooltip,
   CardFooter,
-  IconButton,
 } from "@material-tailwind/react";
 
 const TABLE_HEAD = [
   "Patient",
-  "Amount",
+  "Amount in EGP",
   "Payment Method",
   "Credit Number",
   "Status",
 ];
 
-const TABLE_ROWS = [
-  {
-    patient: "John Michael",
-    amount: "$100",
-    paymentMethod: "Credit Card",
-    creditNumber: "**** **** **** 1234",
-    status: "Paid",
-  },
-  {
-    patient: "Alexa Liras",
-    amount: "$150",
-    paymentMethod: "Cash",
-    creditNumber: "-",
-    status: "Unpaid",
-  },
-  {
-    patient: "Laurent Perrier",
-    amount: "$200",
-    paymentMethod: "Bank Transfer",
-    creditNumber: "-",
-    status: "Paid",
-  },
-  // Add more rows as needed
-];
-
 export function InvoiceTable() {
+  const [invoices, setInvoices] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(6); // Change this value to adjust the number of rows per page
 
-  const filteredRows = TABLE_ROWS.filter((row) =>
+  useEffect(() => {
+    // Fetch invoices from the API
+    fetch("http://localhost:3000/bills")
+      .then((response) => response.json())
+      .then((data) => {
+        setInvoices(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching invoices:", error);
+      });
+  }, []);
+
+  const filteredRows = invoices.filter((row) =>
     Object.values(row).some((value) =>
       value.toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
@@ -66,17 +52,6 @@ export function InvoiceTable() {
   // Handle changing the page
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    indexOfLastRow = currentPage * rowsPerPage;
-    indexOfFirstRow = indexOfLastRow - rowsPerPage;
-    currentRows = filteredRows.slice(indexOfFirstRow, indexOfLastRow);
-    // Select the tbody element
-    const tbody = document.querySelector(".tbody");
-
-    // Remove all child elements if tbody exists
-    if (tbody) {
-      // Set the innerHTML of tbody to an empty string to remove all child nodes
-      tbody.innerHTML = "";
-    }
   };
 
   return (
@@ -133,7 +108,7 @@ export function InvoiceTable() {
           <tbody>
             {currentRows.map(
               (
-                { patient, amount, paymentMethod, creditNumber, status },
+                { patientId, amount, method, creditNumber, status },
                 index
               ) => {
                 const isLast = index === currentRows.length - 1;
@@ -142,7 +117,7 @@ export function InvoiceTable() {
                   : "p-4 border-b border-blue-gray-50";
 
                 // Generate a unique key based on the index
-                const key = `${patient}_${index}`;
+                const key = `${patientId}_${index}`;
 
                 return (
                   <tr key={key}>
@@ -154,7 +129,7 @@ export function InvoiceTable() {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {patient}
+                            {patientId}
                           </Typography>
                         </div>
                       </div>
@@ -174,7 +149,7 @@ export function InvoiceTable() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {paymentMethod}
+                        {method}
                       </Typography>
                     </td>
                     <td className={classes}>

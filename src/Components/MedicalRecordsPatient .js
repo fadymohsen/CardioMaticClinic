@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -17,14 +17,24 @@ import {
 
 const TABLE_HEAD = [
   "Date",
-  "Reason",
   "Diagnosis",
-  "Treatment",
   "Allergies",
   "Smoking Status",
   "Alcohol Intake",
   "",
 ];
+
+// Function to render diseases safely
+const renderDiseases = (diseases) => {
+  if (Array.isArray(diseases)) {
+    return diseases.map((disease, i) => <div key={i}>{disease}</div>);
+  } else if (typeof diseases === 'string') {
+    return diseases.split(',').map((disease, i) => <div key={i}>{disease}</div>);
+  } else {
+    return <div>Not available</div>; // Or any other fallback
+  }
+};
+
 
 export function MedicalRecord() {
   const role = localStorage.getItem("role");
@@ -118,15 +128,7 @@ export function MedicalRecord() {
           <tbody>
             {currentRows.map(
               (
-                {
-                  date,
-                  reason,
-                  diagnosis,
-                  treatment,
-                  allergies,
-                  smoking,
-                  alcohol,
-                },
+                { date, diseases, allergies, smokingStatus, alcoholIntake },
                 index
               ) => {
                 const isLast = index === currentRows.length - 1;
@@ -134,11 +136,8 @@ export function MedicalRecord() {
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
-                // Generate a unique key based on the index
-                const key = `${date}_${index}`;
-
                 return (
-                  <tr key={key}>
+                  <tr key={`${date}_${index}`}>
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -148,13 +147,16 @@ export function MedicalRecord() {
                         {date}
                       </Typography>
                     </td>
+                    <td className={classes}>{renderDiseases(diseases)}</td>
+                    <td className={classes}>{renderDiseases(allergies)}</td>{" "}
+                    {/* Consider similar handling for allergies */}
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {reason}
+                        {smokingStatus}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -163,49 +165,13 @@ export function MedicalRecord() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {diagnosis}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {treatment}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {allergies}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {smoking}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {alcohol}
+                        {alcoholIntake}
                       </Typography>
                     </td>
                     {role === "doctor" && (
                       <td className={classes}>
                         <Link to={"/EditMedicalRecord"}>
-                          <Tooltip content="Edit User">
+                          <Tooltip content="Edit Record">
                             <IconButton variant="text">
                               <PencilIcon className="h-4 w-4" />
                             </IconButton>

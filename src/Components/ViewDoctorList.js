@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
@@ -13,105 +13,39 @@ import {
   CardFooter,
   IconButton,
 } from "@material-tailwind/react";
+import axios from "axios";
 
-const TABLE_HEAD = ["Doctor", "Age", "Gender", "Email", "Phone Number", ""];
-
-const TABLE_ROWS = [
-  {
-    name: "John Michael",
-    age: "29",
-    gender: "Male",
-    email: "john@creative-tim.com",
-    phone: "123-456-7890",
-  },
-  {
-    name: "Alexa Liras",
-    age: "34",
-    gender: "Female",
-    email: "alexa@creative-tim.com",
-    phone: "987-654-3210",
-  },
-  {
-    name: "Laurent Perrier",
-    age: "41",
-    gender: "Male",
-    email: "laurent@creative-tim.com",
-    phone: "456-123-7890",
-  },
-  {
-    name: "Michael Levi",
-    age: "36",
-    gender: "Male",
-    email: "michael@creative-tim.com",
-    phone: "321-654-9870",
-  },
-  {
-    name: "Richard Gran",
-    age: "28",
-    gender: "Male",
-    email: "richard@creative-tim.com",
-    phone: "654-321-0987",
-  },
-  {
-    name: "Richard Gran",
-    age: "28",
-    gender: "Male",
-    email: "richard@creative-tim.com",
-    phone: "654-321-0987",
-  },
-  {
-    name: "Richard Gran",
-    age: "28",
-    gender: "Male",
-    email: "richard@creative-tim.com",
-    phone: "654-321-0987",
-  },
-  {
-    name: "Richard Gran",
-    age: "28",
-    gender: "Male",
-    email: "richard@creative-tim.com",
-    phone: "654-321-0987",
-  },
-  {
-    name: "Richard Gran",
-    age: "28",
-    gender: "Male",
-    email: "richard@creative-tim.com",
-    phone: "654-321-0987",
-  },
-];
+const TABLE_HEAD = ["Doctor", "Age", "Gender", "Email", "Contact Info", ""];
 
 export function Doctors() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(6); // Change this value to adjust the number of rows per page
+  const [rowsPerPage] = useState(6);
+  const [doctors, setDoctors] = useState([]);
 
-  const filteredRows = TABLE_ROWS.filter((row) =>
-    Object.values(row).some((value) =>
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/users/users/pcp")
+      .then((response) => {
+        setDoctors(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching doctors:", error);
+      });
+  }, []);
+
+  const filteredRows = doctors.filter((doctor) =>
+    Object.values(doctor).some((value) =>
       value.toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
 
-  // Calculate the indexes of the first and last row on the current page
   let indexOfLastRow = currentPage * rowsPerPage;
   let indexOfFirstRow = indexOfLastRow - rowsPerPage;
   let currentRows = filteredRows.slice(indexOfFirstRow, indexOfLastRow);
 
-  // Handle changing the page
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    indexOfLastRow = currentPage * rowsPerPage;
-    indexOfFirstRow = indexOfLastRow - rowsPerPage;
-    currentRows = filteredRows.slice(indexOfFirstRow, indexOfLastRow);
-    // Select the tbody element
-    const tbody = document.querySelector(".tbody");
-
-    // Remove all child elements if tbody exists
-    if (tbody) {
-      // Set the innerHTML of tbody to an empty string to remove all child nodes
-      tbody.innerHTML = "";
-    }
   };
 
   return (
@@ -120,8 +54,8 @@ export function Doctors() {
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
             <Typography variant="h5" color="blue-gray">
-            DoctorsList
-                        </Typography>
+              Doctors List
+            </Typography>
             <Typography color="gray" className="mt-1 font-normal">
               See information about all Doctors
             </Typography>
@@ -166,78 +100,79 @@ export function Doctors() {
             </tr>
           </thead>
           <tbody>
-            {currentRows.map(({ name, age, gender, email, phone }, index) => {
-              const isLast = index === currentRows.length - 1;
-              const classes = isLast
-                ? "p-4"
-                : "p-4 border-b border-blue-gray-50";
+            {currentRows.map(
+              ({ name, age, gender, email, contactInfo }, index) => {
+                const isLast = index === currentRows.length - 1;
+                const classes = isLast
+                  ? "p-4"
+                  : "p-4 border-b border-blue-gray-50";
 
-              // Generate a unique key based on the index
-              const key = `${name}_${index}`;
+                const key = `${name}_${index}`;
 
-              return (
-                <tr key={key}>
-                  <td className={classes}>
-                    <div className="flex items-center gap-3">
-                      <div className="flex flex-col">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {name}
-                        </Typography>
+                return (
+                  <tr key={key}>
+                    <td className={classes}>
+                      <div className="flex items-center gap-3">
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {name}
+                          </Typography>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {age}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {gender}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {email}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      {phone}
-                    </Typography>
-                  </td>
-                  <td className={classes}>
-                    <Link to={"/EditDoctor"}>
-                      <Tooltip content="Edit User">
-                        <IconButton variant="text">
-                          <PencilIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {age}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {gender}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {email}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Typography
+                        variant="small"
+                        color="blue-gray"
+                        className="font-normal"
+                      >
+                        {contactInfo}
+                      </Typography>
+                    </td>
+                    <td className={classes}>
+                      <Link to={"/EditDoctor"}>
+                        <Tooltip content="Edit User">
+                          <IconButton variant="text">
+                            <PencilIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </table>
       </CardBody>

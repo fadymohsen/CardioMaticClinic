@@ -23,8 +23,6 @@ export default function AddInvoice() {
       return;
     }
 
-    // Assuming additional validation for amount, payment method, and status
-
     // Reset form fields after successful submission
     setPatient("");
     setAmount("");

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
@@ -25,272 +26,30 @@ const TABLE_HEAD = [
   "",
 ];
 
-const TABLE_ROWS = [
-  {
-    date: "2024-05-01",
-    reason: "Check-up",
-    diagnosis: "Healthy",
-    treatment: "None",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Moderate",
-  },
-  {
-    date: "2024-04-15",
-    reason: "Headache",
-    diagnosis: "Migraine",
-    treatment: "Medication",
-    allergies: "Peanuts",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-03-20",
-    reason: "Fever",
-    diagnosis: "Flu",
-    treatment: "Rest and fluids",
-    allergies: "None",
-    smoking: "Yes",
-    alcohol: "High",
-  },
-  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },
-  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },  {
-    date: "2024-02-28",
-    reason: "Back pain",
-    diagnosis: "Herniated disc",
-    treatment: "Physical therapy",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "Low",
-  },
-  {
-    date: "2024-01-10",
-    reason: "Diabetes check",
-    diagnosis: "Type 2 Diabetes",
-    treatment: "Insulin",
-    allergies: "None",
-    smoking: "No",
-    alcohol: "None",
-  },
-];
-
 export function MedicalRecord() {
   const role = localStorage.getItem("role");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(6); // Change this value to adjust the number of rows per page
+  const [MedicalRecords, setMedicalRecrod] = useState([]);
 
-  const filteredRows = TABLE_ROWS.filter((row) =>
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/medical-record")
+      .then((response) => {
+        setMedicalRecrod(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching doctors:", error);
+      });
+  }, []);
+
+  const filteredRows = MedicalRecords.filter((row) =>
     Object.values(row).some((value) =>
       value.toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
   );
-
   // Calculate the indexes of the first and last row on the current page
   let indexOfLastRow = currentPage * rowsPerPage;
   let indexOfFirstRow = indexOfLastRow - rowsPerPage;
@@ -443,15 +202,17 @@ export function MedicalRecord() {
                         {alcohol}
                       </Typography>
                     </td>
-                   { role === "doctor" && <td className={classes}>
-                      <Link to={"/EditMedicalRecord"}>
-                        <Tooltip content="Edit User">
-                          <IconButton variant="text">
-                            <PencilIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                      </Link>
-                    </td>}
+                    {role === "doctor" && (
+                      <td className={classes}>
+                        <Link to={"/EditMedicalRecord"}>
+                          <Tooltip content="Edit User">
+                            <IconButton variant="text">
+                              <PencilIcon className="h-4 w-4" />
+                            </IconButton>
+                          </Tooltip>
+                        </Link>
+                      </td>
+                    )}
                   </tr>
                 );
               }

@@ -7,7 +7,7 @@ import {
 import { Chip } from "@material-tailwind/react";
 import axios from "axios";
 
-const TABLE_HEAD = ["Scheduled At", "Doctor", "Patient", "Status", ""];
+const TABLE_HEAD = ["Scheduled At", "Doctor", "Status", ""];
 
 export function Appointments() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -87,14 +87,14 @@ export function Appointments() {
           </thead>
           <tbody>
             {filteredRows.map(
-              ({ scheduledAt, doctorId, patientId, status }, index) => {
+              ({ scheduledAt, doctorName, status }, index) => {
                 const isLast = index === filteredRows.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={`${scheduledAt}-${doctorId}`}>
+                  <tr key={`${scheduledAt}-${doctorName}`}>
                     <td className={classes}>
                       <Typography
                         variant="small"
@@ -110,16 +110,7 @@ export function Appointments() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {doctorId}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {patientId}
+                        {doctorName}
                       </Typography>
                     </td>
                     <td className={classes}>

@@ -1,37 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Typography, CardBody, Input } from "@material-tailwind/react";
 import {
   ChevronUpDownIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { Chip } from "@material-tailwind/react";
+import axios from "axios";
 
-const TABLE_HEAD = ["Date", "Time", "Doctor", "Patient", "Status"];
-
-const TABLE_ROWS = [
-  {
-    date: "2024-05-12",
-    hour: "10",
-    minute: "30",
-    doctor: "Dr. Smith",
-    patient: "John Doe",
-    status: "Previous",
-  },
-  {
-    date: "2024-05-15",
-    hour: "14",
-    minute: "00",
-    doctor: "Dr. Johnson",
-    patient: "Jane Doe",
-    status: "Upcoming",
-  },
-  // Add more appointment data as needed
-];
+const TABLE_HEAD = ["Scheduled At", "Doctor", "Patient", "Status", ""];
 
 export function Appointments() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [appointments, setAppointments] = useState([]);
 
-  const filteredRows = TABLE_ROWS.filter((row) =>
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/appointments")
+      .then((response) => {
+        setAppointments(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching appointments:", error);
+      });
+  }, []);
+
+  const formatDate = (dateString) => {
+    const options = {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(dateString).toLocaleString("en-US", options);
+  };
+
+  const filteredRows = appointments.filter((row) =>
     Object.values(row).some((value) =>
       value.toString().toLowerCase().includes(searchQuery.toLowerCase())
     )
@@ -82,21 +87,21 @@ export function Appointments() {
           </thead>
           <tbody>
             {filteredRows.map(
-              ({ date, hour, minute, doctor, patient, status }, index) => {
+              ({ scheduledAt, doctorId, patientId, status }, index) => {
                 const isLast = index === filteredRows.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={`${date}-${hour}-${minute}-${doctor}`}>
+                  <tr key={`${scheduledAt}-${doctorId}`}>
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {date}
+                        {formatDate(scheduledAt)}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -105,7 +110,7 @@ export function Appointments() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {hour}:{minute}
+                        {doctorId}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -114,16 +119,7 @@ export function Appointments() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {doctor}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {patient}
+                        {patientId}
                       </Typography>
                     </td>
                     <td className={classes}>

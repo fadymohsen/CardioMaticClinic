@@ -35,13 +35,13 @@ export default function Login() {
         localStorage.setItem("role", user.role);
 
         switch (user.role) {
-          case "admin":
+          case "Admin":
             navigate("/Statistics");
             break;
-          case "patient":
+          case "Patient":
             navigate("/Records");
             break;
-          case "doctor":
+          case "PCP":
             navigate("/ViewPatient");
             break;
           default:

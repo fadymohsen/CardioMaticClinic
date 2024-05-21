@@ -73,13 +73,13 @@ export function Sidebar({ tab_index }) {
   ];
 
   switch (role) {
-    case "admin":
+    case "Admin":
       menuItems = menuItemsAdmin;
       break;
-    case "patient":
+    case "Patient":
       menuItems = menuItemsPatient;
       break;
-    case "doctor":
+    case "PCP":
       menuItems = menuItemsDoctor;
       break;
     default:

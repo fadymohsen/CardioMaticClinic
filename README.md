@@ -19,10 +19,8 @@
 - Use try-except blocks to handle exceptions and provide meaningful error messages.
 
 ### Team Structure
-- **Project Manager:** Fady Mohsen
-- **Backend Developers:** Mohamad Sayed Diab & Mohamad Sayed Mosilhe.
-- **Frontend Developers:** Reem Adel & Rana Ibrahim.
-- **Security & Testing:** Fady Mohsen & Sondos Mohamad.
+- **Frontend Developers:** Mohamad Sayed Mosilhe & Sondos Mohamad.
+
 
 ### Team Members Contacts
 - fady.seha01@eng-st.cu.edu.eg

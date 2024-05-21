@@ -36,7 +36,9 @@ export function Doctors() {
 
   const filteredRows = doctors.filter((doctor) =>
     Object.values(doctor).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      value
+        ? value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+        : false
     )
   );
 
@@ -101,13 +103,16 @@ export function Doctors() {
           </thead>
           <tbody>
             {currentRows.map(
-              ({ name, age, gender, email, contactInfo }, index) => {
+              (
+                { firstName, dateOfBirth, gender, email, contactInfo },
+                index
+              ) => {
                 const isLast = index === currentRows.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
-                const key = `${name}_${index}`;
+                const key = `${firstName}_${index}`;
 
                 return (
                   <tr key={key}>
@@ -119,7 +124,7 @@ export function Doctors() {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {name}
+                            {firstName || "N/A"}
                           </Typography>
                         </div>
                       </div>
@@ -130,7 +135,7 @@ export function Doctors() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {age}
+                        {dateOfBirth || "N/A"}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -157,7 +162,7 @@ export function Doctors() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {contactInfo}
+                        {contactInfo || "N/A"}
                       </Typography>
                     </td>
                     <td className={classes}>

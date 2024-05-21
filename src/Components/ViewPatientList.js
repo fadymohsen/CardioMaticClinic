@@ -15,7 +15,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Name", "Age", "Gender", "Email", "Contact Info", ""];
+const TABLE_HEAD = ["Name", "Age", "Gender", "Email", ""];
 
 export function PatientList() {
   const [patients, setPatients] = useState([]);
@@ -36,7 +36,9 @@ export function PatientList() {
 
   const filteredRows = patients.filter((row) =>
     Object.values(row).some((value) =>
-      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+      value
+        ? value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+        : false
     )
   );
 
@@ -100,79 +102,68 @@ export function PatientList() {
             </tr>
           </thead>
           <tbody>
-            {currentRows.map(
-              ({ name, age, gender, email, contactInfo }, index) => {
-                const isLast = index === currentRows.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
+            {currentRows.map(({ name, age, gender, email }, index) => {
+              const isLast = index === currentRows.length - 1;
+              const classes = isLast
+                ? "p-4"
+                : "p-4 border-b border-blue-gray-50";
 
-                const key = `${name}_${index}`;
+              const key = `${name}_${index}`;
 
-                return (
-                  <tr key={key}>
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                          >
-                            {name}
-                          </Typography>
-                        </div>
+              return (
+                <tr key={key}>
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <div className="flex flex-col">
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
+                        >
+                          {name || "N/A"}
+                        </Typography>
                       </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {age}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {gender}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {email}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {contactInfo}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Link to={"/EditPatient"}>
-                        <Tooltip content="Edit User">
-                          <IconButton variant="text">
-                            <PencilIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {age || "N/A"}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {gender}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {email}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Link to={"/EditPatient"}>
+                      <Tooltip content="Edit User">
+                        <IconButton variant="text">
+                          <PencilIcon className="h-4 w-4" />
+                        </IconButton>
+                      </Tooltip>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </CardBody>

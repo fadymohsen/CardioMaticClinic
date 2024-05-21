@@ -23,6 +23,8 @@ import EditMedicalRecord from "./Pages/EditMedicalRecord";
 import BookAppointmentDashboard from "./Pages/BookAppointmentDashboard";
 import Invoice from "./Pages/Invoice";
 
+import AddInvoice from "./Pages/AddInvoice";
+
 function App() {
   return (
     <div className="App">
@@ -46,6 +48,7 @@ function App() {
           <Route path="ViewDoctor" element={<DoctorsListPage />}></Route>
           <Route path="AddPatient" element={<AddPatient />}></Route>
           <Route path="AddDoctor" element={<AddDoctor />}></Route>
+          <Route path="AddInvoice" element={<AddInvoice />}></Route>
 
           <Route path="EditPatient" element={<EditPatient />}></Route>
           <Route path="EditDoctor" element={<EditDoctor />}></Route>

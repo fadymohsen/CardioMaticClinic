@@ -6,14 +6,14 @@ import axios from "axios"; // Import axios
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
+  const [dateOfBirth, setAge] = useState("");
   const [gender, setGender] = useState("male");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [role, setRole] = useState("patient");
+  const [role, setRole] = useState("Patient");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ export default function SignUp() {
       if (
         !firstName ||
         !lastName ||
-        !age ||
+        !dateOfBirth ||
         !gender ||
         !email ||
         !password ||
@@ -46,15 +46,16 @@ export default function SignUp() {
       const user = {
         firstName,
         lastName,
-        age,
+        dateOfBirth,
         gender,
         email,
         password,
         role,
       };
+      console.log(user)
 
       // Send a POST request to your API endpoint
-      const response = await axios.post("/api/signup", user);
+      const response = await axios.post("http://localhost:3000/users", user);
 
       // Handle successful response
       if (response.status === 201) {
@@ -161,17 +162,17 @@ export default function SignUp() {
             </div>
 
             <div className="mt-2 flex gap-3">
-              <label htmlFor="age" className="w-1/3 flex items-center">
+              <label htmlFor="dateOfBirth" className="w-1/3 flex items-center">
                 Birth date
               </label>
               <input
-                id="age"
-                name="age"
+                id="dateOfBirth"
+                name="dateOfBirth"
                 type="date"
-                autoComplete="age"
-                placeholder="Enter your age"
+                autoComplete="dateOfBirth"
+                placeholder="Enter your dateOfBirth"
                 required
-                value={age}
+                value={dateOfBirth}
                 onChange={(e) => setAge(e.target.value)}
                 className="block w-full rounded-md outline-none border-0 py-1.5 text-gray-900 shadow-sm focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
               />
@@ -201,9 +202,9 @@ export default function SignUp() {
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
               >
-                <option value="patient">Patient</option>
-                <option value="doctor">Doctor</option>
-                <option value="admin">Admin</option>
+                <option value="Patient">Patient</option>
+                <option value="PCP">Doctor</option>
+                <option value="Admin">Admin</option>
               </select>
             </div>
 

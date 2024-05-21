@@ -5,6 +5,7 @@
         "Doctorlist",
         "heroicons",
         "Patientlist",
-        "Recrod"
+        "Recrod",
+        "setprescriptions"
     ]
 }

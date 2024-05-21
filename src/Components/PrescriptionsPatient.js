@@ -36,7 +36,7 @@ export function Prescriptions() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/users/users/pcp")
+      .get("http://localhost:3000/prescriptions")
       .then((response) => {
         setprescriptions(response.data);
       })

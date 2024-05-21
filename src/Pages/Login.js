@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,13 +17,13 @@ export default function Login() {
     try {
       console.log("Submitting form...");
 
-      const response = await fetch("http://localhost:8000/users");
+      const response = await axios.get("http://localhost:8000/users");
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = response.data;
       console.log("Data:", data);
 
       const user = data.find(

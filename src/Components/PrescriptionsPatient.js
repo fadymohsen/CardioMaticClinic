@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+<<<<<<< Updated upstream
 import { PencilIcon} from "@heroicons/react/24/solid";
+=======
+import { PencilIcon } from "@heroicons/react/24/solid";
+>>>>>>> Stashed changes
 import axios from "axios";
 import {
   Card,

@@ -128,8 +128,7 @@ export function Sidebar({ tab_index }) {
       <div className="flex justify-center mb-8 gap-4">
         <AvatarCustomStyles></AvatarCustomStyles>
         <div className="flex flex-col">
-          <span className="mx-2 font-medium ">Dr.Mohamed Mosilhy</span>
-          <span className="mx-2 text-xs ">Heart Failure Specialist</span>
+          <span className="mx-2 font-medium ">{role}</span>
         </div>
       </div>
     </Card>

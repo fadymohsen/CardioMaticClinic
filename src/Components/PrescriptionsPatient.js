@@ -16,14 +16,25 @@ import {
 } from "@material-tailwind/react";
 
 const TABLE_HEAD = [
-  "ID",
-  "Title",
   "Date",
+  "Title",
   "Created by",
   "Diseases",
   "Medications",
   "",
 ];
+
+const formatDate = (dateString) => {
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+  return new Date(dateString).toLocaleString("en-US", options);
+};
 
 const renderDiseases = (diseases) => {
   if (Array.isArray(diseases)) {
@@ -120,7 +131,7 @@ export function Prescriptions() {
           <tbody>
             {currentRows.map(
               (
-                { id, title, date, createdBy, diseases, medications },
+                { title, date, createdBy, diseases, medications },
                 index
               ) => {
                 const isLast = index === currentRows.length - 1;
@@ -129,7 +140,7 @@ export function Prescriptions() {
                   : "p-4 border-b border-blue-gray-50";
 
                 // Generate a unique key based on the index
-                const key = `${id}_${index}`;
+                const key = `${index}`;
 
                 return (
                   <tr key={key}>
@@ -139,7 +150,7 @@ export function Prescriptions() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {id}
+                        {formatDate(date)}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -149,15 +160,6 @@ export function Prescriptions() {
                         className="font-normal"
                       >
                         {title}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {date}
                       </Typography>
                     </td>
                     <td className={classes}>

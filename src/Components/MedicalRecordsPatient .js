@@ -24,6 +24,18 @@ const TABLE_HEAD = [
   "",
 ];
 
+const formatDate = (dateString) => {
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+  return new Date(dateString).toLocaleString("en-US", options);
+};
+
 const renderDiseases = (diseases) => {
   if (Array.isArray(diseases)) {
     return diseases.map((disease, i) => <div key={i}>{disease}</div>);
@@ -143,11 +155,13 @@ export function MedicalRecord() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {date}
+                        {formatDate(date)}
                       </Typography>
                     </td>
                     <td className={classes}>{renderDiseases(diseases)}</td>
-                    <td className={classes}>{renderDiseases(allergies)}</td>{" "}
+                    <td className={classes}>
+                      {renderDiseases(allergies)}
+                    </td>{" "}
                     {/* Consider similar handling for allergies */}
                     <td className={classes}>
                       <Typography

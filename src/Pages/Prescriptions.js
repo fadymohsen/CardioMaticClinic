@@ -7,8 +7,8 @@ export default function PrescriptionsPage() {
   return (
     <>
       <div className="flex">
-        {role === "patient" && <Sidebar tab_index={1} />}
-        {role === "doctor" && <Sidebar tab_index={2} />}
+        {role === "Patient" && <Sidebar tab_index={1} />}
+        {role === "PCP" && <Sidebar tab_index={2} />}
         <section className="ml-12 mr-8 container mx-auto my-8">
           <div className="mb-8">
           </div>

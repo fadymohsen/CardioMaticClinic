@@ -10,7 +10,7 @@ export default function Statistics() {
   const role = localStorage.getItem("role");
   return (
     <div className="flex">
-      {role === "admin" && <Sidebar tab_index={0} />}
+      {role === "Admin" && <Sidebar tab_index={0} />}
 
       <section className=" ml-12 mr-8 container mx-auto my-8">
         <div className="sm:flex sm:items-center sm:justify-between">

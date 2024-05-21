@@ -12,6 +12,7 @@ import {
   CalendarIcon,
   PlusCircleIcon,
   ClipboardDocumentListIcon,
+  CurrencyDollarIcon,
 } from "@heroicons/react/24/outline";
 
 import "../Styles/Navbar.css";
@@ -53,6 +54,7 @@ export function Sidebar({ tab_index }) {
     { icon: UserIcon, text: "Patients List", path: "/ViewPatient" },
     { icon: UserIcon, text: "Doctors List", path: "/ViewDoctor" },
     { icon: CalendarIcon, text: "Appointments", path: "/ViewAppointments" },
+    { icon: CurrencyDollarIcon, text: "Invoice", path: "/Invoice" },
   ];
 
   const menuItemsDoctor = [

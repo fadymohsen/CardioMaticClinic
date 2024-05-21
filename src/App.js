@@ -21,6 +21,7 @@ import EditPrescriptions from "./Pages/EditPrescriptions";
 
 import EditMedicalRecord from "./Pages/EditMedicalRecord";
 import BookAppointmentDashboard from "./Pages/BookAppointmentDashboard";
+import Invoice from "./Pages/Invoice";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
 
           <Route path="EditPatient" element={<EditPatient />}></Route>
           <Route path="EditDoctor" element={<EditDoctor />}></Route>
+          <Route path="Invoice" element={<Invoice />}></Route>
           <Route
             path="EditPrescriptions"
             element={<EditPrescriptions />}

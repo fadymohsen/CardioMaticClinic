@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios"; // Import axios
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -40,8 +41,26 @@ export default function SignUp() {
         setLoading(false);
         return;
       }
-      // Redirect to sign-in page after successful submission
-      navigate("/login");
+
+      // Create a user object with the form data
+      const user = {
+        firstName,
+        lastName,
+        age,
+        gender,
+        email,
+        password,
+        role,
+      };
+
+      // Send a POST request to your API endpoint
+      const response = await axios.post("/api/signup", user);
+
+      // Handle successful response
+      if (response.status === 201) {
+        // Redirect to sign-in page after successful submission
+        navigate("/login");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       setError("An error occurred while processing your request");
@@ -49,7 +68,6 @@ export default function SignUp() {
 
     setLoading(false);
   };
-
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

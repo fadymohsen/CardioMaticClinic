@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-<<<<<<< Updated upstream
 import { PencilIcon} from "@heroicons/react/24/solid";
-=======
-import { PencilIcon } from "@heroicons/react/24/solid";
->>>>>>> Stashed changes
 import axios from "axios";
 import {
   Card,
@@ -28,6 +24,18 @@ const TABLE_HEAD = [
   "Medications",
   "",
 ];
+
+const renderDiseases = (diseases) => {
+  if (Array.isArray(diseases)) {
+    return diseases.map((disease, i) => <div key={i}>{disease}</div>);
+  } else if (typeof diseases === "string") {
+    return diseases
+      .split(",")
+      .map((disease, i) => <div key={i}>{disease}</div>);
+  } else {
+    return <div>Not available</div>; // Or any other fallback
+  }
+};
 
 export function Prescriptions() {
   const role = localStorage.getItem("role");
@@ -167,7 +175,7 @@ export function Prescriptions() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {diseases}
+                        {renderDiseases(diseases)}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -176,7 +184,7 @@ export function Prescriptions() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {medications}
+                        {renderDiseases(medications)}
                       </Typography>
                     </td>
                     {role === "doctor" && (

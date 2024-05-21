@@ -15,7 +15,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Name", "Age", "Gender", "Email", "", "Actions"];
+const TABLE_HEAD = ["Name", "Age", "Gender", "Email", "Edit", "Delete"];
 
 export function PatientList() {
   const [patients, setPatients] = useState([]);
@@ -108,13 +108,13 @@ export function PatientList() {
             </tr>
           </thead>
           <tbody>
-            {currentRows.map(({ name, age, gender, email }, index) => {
+            {currentRows.map(({ firstName, dateOfBirth, gender, email }, index) => {
               const isLast = index === currentRows.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";
 
-              const key = `${name}_${index}`;
+              const key = `${firstName}_${index}`;
 
               return (
                 <tr key={key}>
@@ -126,7 +126,7 @@ export function PatientList() {
                           color="blue-gray"
                           className="font-normal"
                         >
-                          {name || "N/A"}
+                          {firstName || "N/A"}
                         </Typography>
                       </div>
                     </div>
@@ -137,7 +137,7 @@ export function PatientList() {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {age || "N/A"}
+                      {dateOfBirth || "N/A"}
                     </Typography>
                   </td>
                   <td className={classes}>

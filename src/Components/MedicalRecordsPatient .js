@@ -24,7 +24,6 @@ const TABLE_HEAD = [
   "",
 ];
 
-// Function to render diseases safely
 const renderDiseases = (diseases) => {
   if (Array.isArray(diseases)) {
     return diseases.map((disease, i) => <div key={i}>{disease}</div>);
